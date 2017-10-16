@@ -23,42 +23,42 @@ body, .app {
   background: #f5f5f5;
 }
 
-/* CreateContact */
+/* Createpost */
 
-.close-create-contact {
+.close-create-post {
   display: block;
   width: 60px;
   height: 60px;
-  background-image: url('./icons/arrow-back.svg');
+  background-image: url('../icons/arrow-back.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: 30px;
   font-size: 0;
 }
 
-.create-contact-form {
+.create-post-form {
   padding: 20px;
   max-width: 500px;
   margin: 0 auto;
   display: flex;
 }
 
-.create-contact-details {
+.create-post-details {
   margin-left: 20px;
 }
 
-.create-contact-avatar-input {
+.create-post-avatar-input {
   min-width: 60px;
   height: 60px;
   background-color: white;
-  background-image: url('./icons/person.svg');
+  background-image: url('../icons/person.svg');
   background-size: 32px 32px;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 50%;
 }
 
-.create-contact-details input {
+.create-post-details input {
   width: 100%;
   padding: 5px 10px;
   margin-bottom: 10px;
@@ -70,7 +70,7 @@ body, .app {
 }
 
 
-.create-contact-details button {
+.create-post-details button {
   margin-top: 20px;
   background: #ccc;
   padding: 10px;
@@ -80,12 +80,12 @@ body, .app {
   outline: 0;
 }
 
-/* ListContacts */
+/* Listposts */
 
-.list-contacts {
-  padding-top: 60px;
+.list-posts {
+  padding-top: 5px;
 }
-.list-contacts-top {
+.list-posts-top {
   position: fixed;
   width: 100%;
   top: 0;
@@ -93,10 +93,10 @@ body, .app {
   display: flex;
 }
 
-.search-contacts {
+.search-posts {
   width: 100%;
   padding: 20px 20px 20px 60px;
-  background-image: url('./icons/search.svg');
+  background-image: url('../icons/search.svg');
   background-repeat: no-repeat;
   background-position: 20px center;
   background-size: 1.2em;
@@ -105,22 +105,22 @@ body, .app {
   outline: none;
 }
 
-.add-contact {
+.add-post {
   display: block;
   width: 73px;
   background: white;
-  background-image: url('./icons/person-add.svg');
+  background-image: url('../icons/person-add.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 28px;
   font-size: 0;
 }
 
-.showing-contacts {
+.showing-posts {
   text-align: center;
   margin: 20px 0;
 }
-.showing-contacts button {
+.showing-posts button {
   color: blue;
   background: transparent;
   border: none;
@@ -128,37 +128,36 @@ body, .app {
   font-size: inherit;
 }
 
-.contact-list {
+.post-list {
   width: 100%;
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
-.contact-list-item {
+.post-list-item {
   padding: 20px;
   background: white;
   display: flex;
 }
 
 @media (min-width: 600px) {
-  .contact-list-item {
+  .post-list-item {
     margin: 20px;
     border: 1px solid #d5d8df;
     border-radius: 4px;
   }
 }
 
-.contact-avatar {
-  width: 60px;
-  height: 60px;
+.post-voting-box {
   margin-right: 20px;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 50%;
   flex-shrink: 0;
+  text-align: center;
 }
 
-.contact-details {
+.post-details {
   padding-left: 20px;
   border-left: 1px solid #eee;
 
@@ -169,7 +168,7 @@ body, .app {
   flex-direction: column;
   justify-content: center;
 }
-.contact-details p {
+.post-details p {
   margin: 0;
   min-width: 0;
   white-space: nowrap;
@@ -177,13 +176,18 @@ body, .app {
   text-overflow: ellipsis;
 }
 
-.contact-remove {
+ span {
+  padding: 0 5px;
+  display: inline;
+}
+
+.post-remove {
   padding-left: 20px;
   align-self: center;
   width: 32px;
   height: 32px;
   background-color: transparent;
-  background-image: url('./icons/cancel.svg');
+  background-image: url('../icons/cancel.svg');
   background-size: 100% 100%;
   border: 0;
   color: black;
@@ -191,4 +195,42 @@ body, .app {
   vertical-align: middle;
   cursor: pointer;
   outline: none;
+}
+
+.post-upvote, .post-downvote {
+  padding-left: 20px;
+  align-self: center;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  background-size: 100% 100%;
+  border: 0;
+  color: black;
+  font-size: 0;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: none;
+}
+
+.post-upvote {
+  background-image: url('../icons/arrow.svg');
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.post-downvote {
+  background-image: url('../icons/arrow.svg');
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.post-info {
+  text-align: right;
+  font-size: .8em;
+  color: rgb(159, 160, 159);
+}
+
+.post-info h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
