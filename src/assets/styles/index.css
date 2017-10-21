@@ -157,6 +157,11 @@ body, .app {
   text-align: center;
 }
 
+.post-score span {
+  font-weight: bold;
+  color: blue;
+}
+
 .post-details {
   padding-left: 20px;
   border-left: 1px solid #eee;
@@ -237,4 +242,9 @@ body, .app {
 .post-info h3 {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.post-info a {
+  margin-left: 10px;
+  color: rgb(77, 77, 78);
 }
