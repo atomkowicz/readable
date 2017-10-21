@@ -166,8 +166,12 @@ body, .app {
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
 }
+.post-details h3 {
+  margin: 0;
+}
+
 .post-details p {
   margin: 0;
   min-width: 0;
