@@ -14,6 +14,7 @@ class PostList extends Component {
                     {
                         posts.map(post => (
                             <Post
+                                key={post.id}
                                 id={post.id}
                                 timestamp={post.timestamp}
                                 title={post.title}

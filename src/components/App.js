@@ -1,32 +1,46 @@
 import React, { Component } from 'react';
 import '../assets/styles/App.css';
-import * as ReadableAPI from '../utils/api';
 import Header from './Header';
 import PostList from './PostList';
+import { connect } from 'react-redux';
+import { fetchPosts } from '../actions'
 
 class App extends Component {
 
-  state = {
-    posts: []
-  }
-
   componentDidMount = () => {
-    ReadableAPI.getAllPosts().then((posts) => {
-      this.setState({ posts });
-    })
+    this.props.getAllPosts()
   }
 
 
   render() {
 
+    let postsToDisplay = [];
+
+    if (this.props.posts.allPosts)
+      postsToDisplay = this.props.posts.allPosts;
+
+    console.log(postsToDisplay);
+
     return (
       <div className="App">
         <Header />
-        <PostList posts={this.state.posts}/>
+        <PostList posts={postsToDisplay} />
       </div>
     );
   }
-
 }
 
-export default App;
+const mapStateToProps = ({ posts }) => {
+  return {
+    posts
+  };
+};
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAllPosts: () => dispatch(fetchPosts())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

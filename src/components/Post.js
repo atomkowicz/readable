@@ -18,6 +18,7 @@ class Post extends Component {
                     <div className="post-info">
                         <span className="post-author">Author: {author}</span>
                         <span className="post-author">Category: {category}</span>
+                        <span className="post-author">{timestamp}</span>
                     </div>
                     <h3>{title}</h3>
                     <p>{body}</p>
