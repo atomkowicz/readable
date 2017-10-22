@@ -47,6 +47,18 @@ export function fetchPosts() {
     };
 }
 
+// fetch all available categories from server
+export function fetchCategories() {
+    return (dispatch) => {
+        ReadableAPI
+            .getAllCategories()
+            .then(categories => dispatch({
+                type: GET_CATEGORIES,
+                categories
+            }))
+    }
+}
+
 export function addPost({ id, timestamp, title, body, author, category }) {
     return {
         type: ADD_POST,

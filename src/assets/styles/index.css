@@ -233,7 +233,7 @@ body, .app {
   transform: rotate(-90deg);
 }
 
-.post-info {
+.post-info{
   text-align: right;
   font-size: .8em;
   color: rgb(159, 160, 159);
@@ -245,6 +245,17 @@ body, .app {
 }
 
 .post-info a {
+  margin-left: 10px;
+  color: rgb(77, 77, 78);
+}
+
+.category-menu {
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.category  {
   margin-left: 10px;
   color: rgb(77, 77, 78);
 }

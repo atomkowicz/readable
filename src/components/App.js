@@ -2,44 +2,40 @@ import React, { Component } from 'react';
 import '../assets/styles/App.css';
 import Header from './Header';
 import PostList from './PostList';
+import Menu from './Menu';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions'
+import { fetchPosts, fetchCategories } from '../actions'
 
 class App extends Component {
 
   componentDidMount = () => {
-    this.props.getAllPosts()
-  }
-
+    this.props.getAllCategories();
+    this.props.getAllPosts();
+  } 
 
   render() {
-
-    let postsToDisplay = [];
-
-    if (this.props.posts.allPosts)
-      postsToDisplay = this.props.posts.allPosts;
-
-    console.log(postsToDisplay);
-
+    const { posts, categories } = this.props;
     return (
       <div className="App">
         <Header />
-        <PostList posts={postsToDisplay} />
+        <Menu categories={categories} />
+        <PostList posts={posts} />
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ posts }) => {
+const mapStateToProps = (state) => {
   return {
-    posts
+    posts: state.posts,
+    categories: state.categories
   };
 };
 
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllPosts: () => dispatch(fetchPosts())
+    getAllPosts: () => dispatch(fetchPosts()),
+    getAllCategories: () => dispatch(fetchCategories())
   }
 }
 

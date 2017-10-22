@@ -1,27 +1,30 @@
 import { combineReducers } from 'redux';
-import { GET_ALL_POSTS, ADD_POST, ADD_COMMENT } from '../actions';
+import { GET_ALL_POSTS, GET_CATEGORIES, ADD_POST, ADD_COMMENT } from '../actions';
 
-const initialState = {
-    posts: {
-        allPosts:[]
-    }
-}
 
-function posts(state = initialState, action) {
+function posts(state = [], action) {
     const { posts } = action;
 
     switch (action.type) {
         case GET_ALL_POSTS:
-        return {
-            ...state,
-            allPosts: action.posts
-        };
+            return posts.sort((x, y) => x.voteScore < y.voteScore)
         default:
             return state;
     }
 }
 
-function post(state = initialState, action) {
+function categories(state = [], action) {
+    const { categories } = action;
+
+    switch (action.type) {
+        case GET_CATEGORIES:
+            return categories
+        default:
+            return state;
+    }
+}
+
+function post(state = [], action) {
     const { id, timestamp, title, body, author, category } = action;
 
     switch (action.type) {
@@ -32,7 +35,7 @@ function post(state = initialState, action) {
     }
 }
 
-function comment(state = initialState, action) {
+function comment(state = [], action) {
     const { id, timestamp, body, author, parentId } = action;
 
     switch (action.type) {
@@ -45,5 +48,5 @@ function comment(state = initialState, action) {
 
 export default combineReducers({
     posts,
-    comment
+    categories
 });
