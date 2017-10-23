@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 
 class Post extends Component {
 
     render() {
 
-        const { id, timestamp, title, body, author, category, voteScore } = this.props;
+        const { timestamp, title, body, author, category, voteScore } = this.props;
         return (
             <li className="post-list-item">
                 <div className="post-voting-box" >
@@ -31,6 +32,16 @@ class Post extends Component {
             </li>
         )
     }
+}
+
+Post.propTypes = {
+    id: PropTypes.string,
+    timestamp: PropTypes.number,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    author: PropTypes.string,
+    category: PropTypes.string,
+    voteScore: PropTypes.number
 }
 
 export default Post;

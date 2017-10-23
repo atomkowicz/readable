@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchCategories } from '../actions'
+import { PropTypes } from 'prop-types';
 
 class Menu extends Component {
 
@@ -20,6 +19,10 @@ class Menu extends Component {
             </div>
         )
     }
+}
+
+Menu.propTypes = {
+    categories: PropTypes.array.isRequired
 }
 
 export default Menu;

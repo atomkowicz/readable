@@ -17,7 +17,7 @@ class App extends Component {
     const { posts, categories } = this.props;
     return (
       <div className="App">
-        <Header />
+        <Header title={"all posts"}/>
         <Menu categories={categories} />
         <PostList posts={posts} />
       </div>
