@@ -4,22 +4,27 @@ import Header from './Header';
 import PostList from './PostList';
 import Menu from './Menu';
 import { connect } from 'react-redux';
-import { fetchPosts, fetchCategories } from '../actions'
+import { fetchPosts, fetchCategories } from '../actions';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
 
   componentDidMount = () => {
     this.props.getAllCategories();
     this.props.getAllPosts();
-  } 
+  }
 
   render() {
     const { posts, categories } = this.props;
     return (
       <div className="App">
-        <Header title={"all posts"}/>
-        <Menu categories={categories} />
-        <PostList posts={posts} />
+        <Route exact path='/' render={() => (
+          <div>
+            <Header title={"all posts"} />
+            <Menu categories={categories} />
+            <PostList posts={posts} />
+          </div>
+        )} />
       </div>
     );
   }
