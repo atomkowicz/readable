@@ -4,13 +4,13 @@ import './assets/styles/index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
-import store from './store'
-import { BrowserRouter } from 'react-router-dom';
+import store, { history } from './store'
+import { ConnectedRouter } from 'react-router-redux';
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+        <ConnectedRouter history={history}>
+          <App />
+      </ConnectedRouter>
     </Provider>, document.getElementById('root'));
 registerServiceWorker();

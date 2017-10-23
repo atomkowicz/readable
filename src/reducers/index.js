@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 import { GET_ALL_POSTS, GET_CATEGORIES, ADD_POST, ADD_COMMENT } from '../actions';
 
 
@@ -46,7 +47,8 @@ function comment(state = [], action) {
     }
 }
 
-export default combineReducers({
+export default combineReducers ({
     posts,
-    categories
+    categories,
+    routing: routerReducer
 });
