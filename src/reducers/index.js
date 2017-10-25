@@ -1,6 +1,12 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import { GET_ALL_POSTS, GET_CATEGORIES, ADD_POST, ADD_COMMENT } from '../actions';
+import {
+    GET_ALL_POSTS,
+    GET_CATEGORIES,
+    GET_CATEGORY_POSTS,
+    ADD_POST,
+    ADD_COMMENT
+} from '../actions';
 
 
 function posts(state = [], action) {
@@ -8,7 +14,9 @@ function posts(state = [], action) {
 
     switch (action.type) {
         case GET_ALL_POSTS:
-            return posts.sort((x, y) => x.voteScore < y.voteScore)
+            return posts.sort((x, y) => x.voteScore < y.voteScore);
+        case GET_CATEGORY_POSTS:
+            return posts;
         default:
             return state;
     }
@@ -19,7 +27,7 @@ function categories(state = [], action) {
 
     switch (action.type) {
         case GET_CATEGORIES:
-            return categories
+            return categories;
         default:
             return state;
     }
@@ -47,7 +55,7 @@ function comment(state = [], action) {
     }
 }
 
-export default combineReducers ({
+export default combineReducers({
     posts,
     categories,
     routing: routerReducer

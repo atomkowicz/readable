@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import '../assets/styles/App.css';
 import Header from './Header';
 import PostList from './PostList';
+import PostDetails from './PostDetails';
 import Menu from './Menu';
 import { connect } from 'react-redux';
-import { fetchPosts, fetchCategories } from '../actions';
+import { fetchPosts, fetchCategories, getPostsByCategory } from '../actions';
 import { Route } from 'react-router-dom';
 
 class App extends Component {
@@ -16,12 +17,18 @@ class App extends Component {
 
   render() {
     const { posts, categories } = this.props;
+    
+
     return (
       <div className="App">
         <Route exact path='/' render={() => (
           <div>
             <Header title={"all posts"} />
-            <Menu categories={categories} />
+            {
+              <Menu
+                categories={this.props.categories}
+                onCategoryClick={this.props.getPostsByCategory} />
+            }
             <PostList posts={posts} />
           </div>
         )} />
@@ -40,7 +47,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllPosts: () => dispatch(fetchPosts()),
-    getAllCategories: () => dispatch(fetchCategories())
+    getAllCategories: () => dispatch(fetchCategories()),
+    getPostsByCategory: (category) => dispatch(getPostsByCategory(category))
   }
 }
 

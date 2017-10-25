@@ -13,6 +13,7 @@ class PostList extends Component {
             <div className="list-posts">
                 <ol className="post-list">
                     {
+                        posts.length? 
                         posts.map(post => (
                             <Post
                                 key={post.id}
@@ -25,6 +26,7 @@ class PostList extends Component {
                                 voteScore={post.voteScore}
                             />
                         ))
+                        : (<div className="no-results">no results</div>)
                     }
                 </ol>
             </div>

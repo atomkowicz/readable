@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
+import { fetchCategoryPosts } from '../actions';
+import { connect } from 'react-redux';
 
 class Menu extends Component {
 
@@ -7,13 +9,18 @@ class Menu extends Component {
         return (
             <div className="category-menu">
                 <span>Categories: </span>
+                <span
+                    className="category">
+                    all
+                </span>
                 {
                     this.props.categories.map(category => (
-                        <a href=""
+                        <span
+                            onClick={() => this.props.onCategoryClick(category.name)}
                             key={category.name}
                             className="category">
                             {category.name}
-                        </a>
+                        </span>
                     ))
                 }
             </div>
@@ -22,7 +29,8 @@ class Menu extends Component {
 }
 
 Menu.propTypes = {
-    categories: PropTypes.array.isRequired
+    categories: PropTypes.array.isRequired,
+    onCategoryClick: PropTypes.func.isRequired
 }
 
 export default Menu;

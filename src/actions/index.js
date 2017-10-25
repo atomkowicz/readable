@@ -1,4 +1,5 @@
 import * as ReadableAPI from '../utils/api';
+import { push } from 'react-router-redux'
 
 // general
 export const IS_LOADING = 'ITEM_IS_LOADING';
@@ -45,7 +46,19 @@ export function fetchPosts() {
                 posts
             }))
     };
-}
+};
+
+// fetch posts by category
+export function getPostsByCategory(category) {
+    return (dispatch) => {
+        ReadableAPI
+            .getCategoryPosts(category)
+            .then(posts => dispatch({
+                type: GET_CATEGORY_POSTS,
+                posts
+            }))
+    };
+};
 
 // fetch all available categories from server
 export function fetchCategories() {
@@ -56,8 +69,8 @@ export function fetchCategories() {
                 type: GET_CATEGORIES,
                 categories
             }))
-    }
-}
+    };
+};
 
 export function addPost({ id, timestamp, title, body, author, category }) {
     return {
