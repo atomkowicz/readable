@@ -292,7 +292,9 @@ body, .app {
 }
 
 .container-text {
-  margin: 0 20px;
+  margin: 20px;
+  display: block;
+  text-align: right;
 }
 
 .container {

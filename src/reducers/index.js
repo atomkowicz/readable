@@ -42,7 +42,7 @@ function post(state = [], action) {
         case GET_POST:
             return post;
         case ADD_POST:
-            return { ...state };
+            return post;
         default:
             return state;
     }

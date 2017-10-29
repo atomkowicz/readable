@@ -1,4 +1,5 @@
 import * as ReadableAPI from '../utils/api';
+import { push } from 'react-router-redux';
 
 // general
 export const IS_LOADING = 'ITEM_IS_LOADING';
@@ -83,12 +84,26 @@ export function getPost(id) {
 }
 
 export function getPostComments(id) {
-    return(dispatch)=> {
+    return (dispatch) => {
         ReadableAPI
             .fetchPostComments(id)
-            .then(comments=> dispatch({
-                type:GET_POST_COMMENTS,
+            .then(comments => dispatch({
+                type: GET_POST_COMMENTS,
                 comments
             }))
+    }
+}
+
+export function addPost(body) {
+    return (dispatch) => {
+        ReadableAPI
+            .addPost(body)
+            .then(post => {
+                dispatch({
+                    type: ADD_POST,
+                    post
+                });
+                dispatch(push('/'));
+            })
     }
 }

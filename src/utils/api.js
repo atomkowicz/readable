@@ -35,13 +35,13 @@ export const fetchPostComments = (id) => (
         .then(res => res.json())
 )
 
-export const addPost = (postJson) => (
+export const addPost = (body) => (
     fetch(`${api}/posts`, {
         method: 'POST',
         headers: {
             ...headers,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(postJson)
+        body: JSON.stringify(body)
     }).then(res => res.json())
 )

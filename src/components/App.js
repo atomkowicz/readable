@@ -6,6 +6,7 @@ import PostList from './PostList'
 import PostDetails from './PostDetails';
 import AddPost from './AddPost';
 import { Route, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class App extends Component {
 
@@ -17,6 +18,7 @@ class App extends Component {
           <Header title={"all posts"} />
           <Menu />
           <div className="container">
+            <Link to={`/posts/add`} className="container-text">Add new post</Link>
             <Switch>
               <Route
                 exact path="/:category?"
@@ -27,7 +29,6 @@ class App extends Component {
               <Route
                 exact path="/:category/:id"
                 render={() => <PostDetails />} />
-
             </Switch>
           </div>
         </div>

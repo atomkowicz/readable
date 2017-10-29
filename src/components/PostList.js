@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Post from './Post';
 import { connect } from 'react-redux';
 import { getPosts } from '../actions';
-import { Link } from 'react-router-dom';
 
 class PostList extends Component {
 
@@ -30,17 +29,12 @@ class PostList extends Component {
                 <ol className="post-list">
                     {
                         postList.length ?
-                            postList.map(post => (
-                                <Post key={post.id} post={post} />
+                            postList.map((post, i) => (
+                                <Post key={i} post={post} />
                             ))
                             : (<div className="no-results">no results</div>)
                     }
                 </ol>
-                <Link to={`/posts/add`}
-                    className="link-button">
-                    Add new
-                </Link>
-
             </div>
         )
     }
