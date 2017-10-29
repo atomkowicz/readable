@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Post from './Post';
 import { connect } from 'react-redux';
 import { getPosts } from '../actions';
+import { Link } from 'react-router-dom';
 
 class PostList extends Component {
 
@@ -22,19 +23,24 @@ class PostList extends Component {
         const { posts } = this.props;
         const currentCategory = this.currentCategory();
         let postList = posts;
-        if (currentCategory) postList = posts.filter((post) => post.category === currentCategory);      
+        if (currentCategory) postList = posts.filter((post) => post.category === currentCategory);
 
         return (
             <div className="list-posts">
                 <ol className="post-list">
                     {
                         postList.length ?
-                        postList.map(post => (
+                            postList.map(post => (
                                 <Post key={post.id} post={post} />
                             ))
                             : (<div className="no-results">no results</div>)
                     }
                 </ol>
+                <Link to={`/posts/add`}
+                    className="link-button">
+                    Add new
+                </Link>
+
             </div>
         )
     }

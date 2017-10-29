@@ -7,6 +7,7 @@ import Post from './Post';
 class PostDetails extends Component {
 
     currentPostId = () => {
+        console.log(this.props.path)
         // get current post id from url in case user refreshes page
         return this.props.path.match(/\w+$/g).join("");
     }
