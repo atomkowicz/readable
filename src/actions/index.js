@@ -1,5 +1,4 @@
 import * as ReadableAPI from '../utils/api';
-import { push } from 'react-router-redux'
 
 // general
 export const IS_LOADING = 'ITEM_IS_LOADING';
@@ -37,10 +36,10 @@ export const GET_COMMENT_DETAILS = 'GET_COMMENT_DETAILS';
 export const EDIT_COMMENT_DETAILS = 'EDIT_COMMENT_DETAILS';
 
 // fetch all posts from server
-export function fetchPosts() {
+export function getPosts() {
     return (dispatch) => {
         ReadableAPI
-            .getAllPosts()
+            .fetchAllPosts()
             .then(posts => dispatch({
                 type: GET_ALL_POSTS,
                 posts
@@ -52,7 +51,7 @@ export function fetchPosts() {
 export function getPostsByCategory(category) {
     return (dispatch) => {
         ReadableAPI
-            .getCategoryPosts(category)
+            .fetchPostsByCategory(category)
             .then(posts => dispatch({
                 type: GET_CATEGORY_POSTS,
                 posts
@@ -61,10 +60,10 @@ export function getPostsByCategory(category) {
 };
 
 // fetch all available categories from server
-export function fetchCategories() {
+export function getCategories() {
     return (dispatch) => {
         ReadableAPI
-            .getAllCategories()
+            .fetchCategories()
             .then(categories => dispatch({
                 type: GET_CATEGORIES,
                 categories
@@ -72,14 +71,24 @@ export function fetchCategories() {
     };
 };
 
-export function addPost({ id, timestamp, title, body, author, category }) {
-    return {
-        type: ADD_POST,
-        id,
-        timestamp,
-        title,
-        body,
-        author,
-        category
+export function getPost(id) {
+    return (dispatch) => {
+        ReadableAPI
+            .fetchPost(id)
+            .then(post => dispatch({
+                type: GET_POST,
+                post
+            }))
+    };
+}
+
+export function getPostComments(id) {
+    return(dispatch)=> {
+        ReadableAPI
+            .fetchPostComments(id)
+            .then(comments=> dispatch({
+                type:GET_POST_COMMENTS,
+                comments
+            }))
     }
 }

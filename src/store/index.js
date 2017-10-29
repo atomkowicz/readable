@@ -19,7 +19,7 @@ const enhancers = []
 const middleware = [
   thunkMiddleware,
   routerMiddleware(history),
-  logger
+  // logger
 ]
 
 if (process.env.NODE_ENV === 'development') {

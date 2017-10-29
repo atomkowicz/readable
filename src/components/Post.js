@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Post extends Component {
 
     render() {
 
-        const { timestamp, title, body, author, category, voteScore } = this.props;
+        const { id, timestamp, title, body, author, category, voteScore } = this.props.post;
+
         return (
             <li className="post-list-item">
                 <div className="post-voting-box" >
@@ -21,8 +22,13 @@ class Post extends Component {
                         <span className="post-author">Category: {category}</span>
                         <span className="post-author">{timestamp}</span>
                     </div>
-                    <h3>{title}</h3>
-                    <p>{body}</p>
+                    <h3>
+                        <Link to={`/posts/${id}`}
+                            className="link-button">
+                            {title}
+                        </Link>
+                    </h3>
+                    <p className="post-text">{body}</p>
                     <div className="post-info">
                         <a href="" className="post-comments">Comments: 34</a>
                         <a href="" className="post-edit">Edit</a>
@@ -32,16 +38,6 @@ class Post extends Component {
             </li>
         )
     }
-}
-
-Post.propTypes = {
-    id: PropTypes.string,
-    timestamp: PropTypes.number,
-    title: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
-    author: PropTypes.string,
-    category: PropTypes.string,
-    voteScore: PropTypes.number
 }
 
 export default Post;

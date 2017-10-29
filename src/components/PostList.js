@@ -1,32 +1,38 @@
 import React, { Component } from 'react';
 import Post from './Post';
-import {PropTypes} from 'prop-types';
+import { connect } from 'react-redux';
+import { getPosts } from '../actions';
 
 class PostList extends Component {
 
-    render() {
+    currentCategory = () => {
+        // get current post id from url in case user refreshes page
+        if (this.props.path.match(/\w+$/g) !== null) {
+            return this.props.path.match(/\w+$/g).join("");
+        } else {
+            return "";
+        }
+    }
 
+    componentDidMount = () => {
+        this.props.getAllPosts();
+    }
+
+    render() {
         const { posts } = this.props;
+        const currentCategory = this.currentCategory();
+        let postList = posts;
+        if (currentCategory) postList = posts.filter((post) => post.category === currentCategory);      
 
         return (
-
             <div className="list-posts">
                 <ol className="post-list">
                     {
-                        posts.length? 
-                        posts.map(post => (
-                            <Post
-                                key={post.id}
-                                id={post.id}
-                                timestamp={post.timestamp}
-                                title={post.title}
-                                body={post.body}
-                                author={post.author}
-                                category={post.category}
-                                voteScore={post.voteScore}
-                            />
-                        ))
-                        : (<div className="no-results">no results</div>)
+                        postList.length ?
+                        postList.map(post => (
+                                <Post key={post.id} post={post} />
+                            ))
+                            : (<div className="no-results">no results</div>)
                     }
                 </ol>
             </div>
@@ -34,8 +40,20 @@ class PostList extends Component {
     }
 }
 
-PostList.propTypes = {
-    posts: PropTypes.array.isRequired
+const mapStateToProps = (state) => {
+    const { pathname } = state.routing.location;
+
+    return {
+        posts: state.posts,
+        categories: state.categories,
+        path: pathname,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getAllPosts: () => dispatch(getPosts()),
+    }
 }
 
-export default PostList;
+export default connect(mapStateToProps, mapDispatchToProps)(PostList);

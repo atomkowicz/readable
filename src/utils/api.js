@@ -9,18 +9,28 @@ const headers = {
     'Authorization': token
 }
 
-export const getAllPosts = () => (
+export const fetchAllPosts = () => (
     fetch(`${api}/posts`, { headers })
         .then(res => res.json())
 );
 
-export const getCategoryPosts = (category) => (
+export const fetchPostsByCategory = (category) => (
     fetch(`${api}/${category}/posts`, { headers })
         .then(res => res.json())
 );
 
-export const getAllCategories = () => (
+export const fetchCategories = () => (
     fetch(`${api}/categories`, { headers })
         .then(res => res.json())
         .then(res => res.categories)
 );
+
+export const fetchPost = (id) => (
+    fetch(`${api}/posts/${id}`, { headers })
+        .then(res => res.json())
+);
+
+export const fetchPostComments = (id) => (
+    fetch(`${api}/posts/${id}/comments`, { headers })
+        .then(res => res.json())
+)

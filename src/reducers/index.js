@@ -4,6 +4,8 @@ import {
     GET_ALL_POSTS,
     GET_CATEGORIES,
     GET_CATEGORY_POSTS,
+    GET_POST,
+    GET_POST_COMMENTS,
     ADD_POST,
     ADD_COMMENT
 } from '../actions';
@@ -34,11 +36,24 @@ function categories(state = [], action) {
 }
 
 function post(state = [], action) {
-    const { id, timestamp, title, body, author, category } = action;
+    const { post } = action;
 
     switch (action.type) {
+        case GET_POST:
+            return post;
         case ADD_POST:
             return { ...state };
+        default:
+            return state;
+    }
+}
+
+function postComments(state = [], action) {
+    const { comments } = action;
+
+    switch (action.type) {
+        case GET_POST_COMMENTS:
+            return comments;
         default:
             return state;
     }
@@ -56,7 +71,9 @@ function comment(state = [], action) {
 }
 
 export default combineReducers({
+    post,
     posts,
+    postComments,
     categories,
     routing: routerReducer
 });
