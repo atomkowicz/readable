@@ -22,13 +22,13 @@ class App extends Component {
             <Switch>
               <Route
                 exact path="/:category?"
-                render={() => <PostList />} />
+                component={PostList} />
               <Route
                 exact path="/posts/add"
-                render={() => <AddPost />} />
+                component={AddPost} />
               <Route
                 exact path="/:category/:id"
-                render={() => <PostDetails />} />
+                component={PostDetails} />
             </Switch>
           </div>
         </div>

@@ -6,20 +6,14 @@ import Post from './Post';
 
 class PostDetails extends Component {
 
-    currentPostId = () => {
-        console.log(this.props.path)
-        // get current post id from url in case user refreshes page
-        return this.props.path.match(/\w+$/g).join("");
-    }
-
     componentDidMount = () => {
-        const id = this.currentPostId()
+        const { id } = this.props.match.params;
         this.props.getPost(id);
     }
 
     render() {
         const { post } = this.props;
-        const id = this.currentPostId();
+        const { id } = this.props.match.params;
 
         return (
             <div>
@@ -32,10 +26,9 @@ class PostDetails extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { post, routing } = state;
+    const { post } = state;
 
     return {
-        path: routing.location.pathname,
         post: post
     };
 };

@@ -8,15 +8,6 @@ class PostList extends Component {
         posts: ''
     }
 
-    currentCategory = () => {
-        // get current post id from url in case user refreshes page
-        if (this.props.path.match(/\w+$/g) !== null) {
-            return this.props.path.match(/\w+$/g).join("");
-        } else {
-            return "";
-        }
-    }
-
     sortByTimestamp = (posts) => {
         return posts.sort((x, y) => x.timestamp < y.timestamp);
     }
@@ -45,11 +36,11 @@ class PostList extends Component {
 
     render() {
         const { posts } = this.props;
-        const currentCategory = this.currentCategory();
-
+        const { category } = this.props.match.params;
+        
         let sortedPosts = this.state.posts ? this.state.posts : posts;
-        let postList = currentCategory
-            ? sortedPosts.filter((post) => post.category === currentCategory)
+        let postList = category
+            ? sortedPosts.filter((post) => post.category === category)
             : sortedPosts;
 
         return (
@@ -73,18 +64,15 @@ class PostList extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { pathname } = state.routing.location;
-
     return {
         posts: state.posts,
         categories: state.categories,
-        path: pathname,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAllPosts: () => dispatch(getPosts()),
+        getAllPosts: () => dispatch(getPosts())
     }
 }
 

@@ -5,7 +5,8 @@ import { getPostComments } from '../actions';
 
 class CommentList extends Component {
     componentDidMount = () => {
-        this.props.getPostComments(this.props.currentPostId);
+        const { postId } = this.props;
+        this.props.getPostComments(postId);
     }
 
     render() {
@@ -29,14 +30,8 @@ class CommentList extends Component {
 
 const mapStateToProps = (state) => {
     const { postComments } = state;
-    const { pathname } = state.routing.location;
-
-    // get current post id from url in case user refreshes page
-    const id = pathname.match(/\w+$/g).join("");
-
     return {
         comments: postComments,
-        currentPostId: id
     };
 };
 
