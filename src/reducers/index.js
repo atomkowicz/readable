@@ -16,7 +16,7 @@ function posts(state = [], action) {
 
     switch (action.type) {
         case GET_ALL_POSTS:
-            return posts.sort((x, y) => x.voteScore < y.voteScore);
+            return posts;
         case GET_CATEGORY_POSTS:
             return posts;
         default:
