@@ -37,7 +37,7 @@ class PostList extends Component {
     render() {
         const { posts } = this.props;
         const { category } = this.props.match.params;
-        
+
         let sortedPosts = this.state.posts ? this.state.posts : posts;
         let postList = category
             ? sortedPosts.filter((post) => post.category === category)
@@ -45,9 +45,13 @@ class PostList extends Component {
 
         return (
             <div className="list-posts">
-                <select name="category" defaultValue="react" onChange={(e) => this.onSortMethodChange(e)}>
-                    <option value="score">by score</option>
-                    <option value="date">by date</option>
+                <select
+                    className="container-text"
+                    name="category"
+                    defaultValue="react"
+                    onChange={(e) => this.onSortMethodChange(e)}>
+                    <option value="score">Sort by score</option>
+                    <option value="date">Sort by date</option>
                 </select>
                 <ol className="post-list">
                     {

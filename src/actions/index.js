@@ -107,3 +107,11 @@ export function addPost(body) {
             })
     }
 }
+
+export function deletePost(id) {
+    return (dispatch) => {
+        ReadableAPI
+            .deletePost(id)
+            .than(dispatch(push('/')));
+    }
+}

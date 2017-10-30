@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { deletePost } from '../actions';
 
 class Post extends Component {
+
+    deletePost = (id) => {
+        this.props.deletePost(id);
+    }
 
     render() {
 
@@ -32,7 +38,11 @@ class Post extends Component {
                     <div className="post-info">
                         <a href="" className="post-comments">Comments: 34</a>
                         <a href="" className="post-edit">Edit</a>
-                        <a href="" className="post-delete">Delete</a>
+                        <a href=""
+                            className="post-delete"
+                            onClick={() => this.deletePost(id)}>
+                            Delete
+                        </a>
                     </div>
                 </div>
             </li>
@@ -40,4 +50,18 @@ class Post extends Component {
     }
 }
 
-export default Post;
+const mapStateToProps = (state) => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deletePost: (id) => dispatch(deletePost(id))
+    }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

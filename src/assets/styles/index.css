@@ -81,7 +81,7 @@ body, .app {
   outline: 0;
 }
 
-.create-post-details select {
+select {
   padding: 5px 5px;
   margin-bottom: 10px;
   font-size: inherit;
