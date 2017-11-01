@@ -5,10 +5,11 @@ import {
     GET_CATEGORIES,
     GET_CATEGORY_POSTS,
     GET_POST,
-    GET_POST_COMMENTS,
     ADD_POST,
     EDIT_POST,
-    ADD_COMMENT
+    GET_POST_COMMENTS,
+    ADD_COMMENT,
+    DELETE_COMMENT
 } from '../actions';
 
 
@@ -59,6 +60,8 @@ function postComments(state = [], action) {
             return comments;
         case ADD_COMMENT:
             return [...state, comment];
+        case DELETE_COMMENT:
+            return state.filter((item) => item.id === comment.id);
         default:
             return state;
     }
