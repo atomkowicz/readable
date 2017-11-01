@@ -23,10 +23,8 @@ class AddPost extends Component {
             <div>
                 <form className="create-post-form" onSubmit={this.handleSubmit}>
                     <div className="create-post-details">
-                        <input type="hidden" name="id" />
-                        <input type="hidden" name="timestamp" />
                         <input type="text" name="title" placeholder="Title" value={"title1"} />
-                        <input type="text" name="body" placeholder="Body" value={"body1"}/>
+                        <textarea name="body" placeholder="Type your text here" value={"body"} />
                         <input type="text" name="author" placeholder="Athor" value={"author1"} />
                         <select name="category" defaultValue="react">
                             {

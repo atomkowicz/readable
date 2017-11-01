@@ -92,6 +92,19 @@ select {
   color:rgb(123, 123, 122);
 }
 
+textarea {
+  width: 100%;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  font-size: inherit;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: 0;
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
 /* Listposts */
 
 .list-posts-top {

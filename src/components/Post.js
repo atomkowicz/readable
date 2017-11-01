@@ -37,7 +37,10 @@ class Post extends Component {
                     <p className="post-text">{body}</p>
                     <div className="post-info">
                         <a href="" className="post-comments">Comments: 34</a>
-                        <a href="" className="post-edit">Edit</a>
+                        <Link to={`/${category}/${id}/edit`}
+                            className="post-edit">
+                            Edit
+                        </Link>
                         <a href=""
                             className="post-delete"
                             onClick={() => this.deletePost(id)}>

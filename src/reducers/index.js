@@ -7,6 +7,7 @@ import {
     GET_POST,
     GET_POST_COMMENTS,
     ADD_POST,
+    EDIT_POST,
     ADD_COMMENT
 } from '../actions';
 
@@ -43,6 +44,8 @@ function post(state = [], action) {
             return post;
         case ADD_POST:
             return post;
+        case EDIT_POST:
+            return post;    
         default:
             return state;
     }

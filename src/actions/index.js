@@ -16,8 +16,8 @@ export const GET_ALL_POSTS = 'GET_ALL_POSTS';
 // single post
 export const GET_POST = 'GET_POST';
 export const ADD_POST = 'ADD_POST';
+export const EDIT_POST = 'EDIT_POST';
 export const DELETE_POST = 'DELETE_POST';
-export const GET_POST_DETAILS = 'GET_POST_DETAILS';
 export const UPVOTE_POST = 'UPVOTE_POST';
 export const DOWNVOTE_POST = 'DOWNVOTE_POST';
 
@@ -30,11 +30,6 @@ export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const UPVOTE_COMENT = 'UPVOTE_COMENT';
 export const DOWNVOTE_COMMENT = 'DOWNVOTE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
-
-
-// comment details
-export const GET_COMMENT_DETAILS = 'GET_COMMENT_DETAILS';
-export const EDIT_COMMENT_DETAILS = 'EDIT_COMMENT_DETAILS';
 
 // fetch all posts from server
 export function getPosts() {
@@ -112,6 +107,26 @@ export function deletePost(id) {
     return (dispatch) => {
         ReadableAPI
             .deletePost(id)
-            .than(dispatch(push('/')));
+            .than(post => {
+                dispatch({
+                    type: DELETE_POST,
+                    post
+                })
+                dispatch(push('/'))
+            })
+    }
+}
+
+export function editPost(id, body) {
+    return (dispatch) => {
+        ReadableAPI
+            .editPost(id, body)
+            .then(post => {
+                dispatch({
+                    type: EDIT_POST,
+                    post
+                })
+                dispatch(push(`/`))
+            })
     }
 }
