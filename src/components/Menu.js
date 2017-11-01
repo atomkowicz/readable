@@ -45,7 +45,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getAllPosts: () => dispatch(getPosts()),
         getAllCategories: () => dispatch(getCategories()),
-        getPostsByCategory: (category) => dispatch(getPostsByCategory(category))
     }
 }
 

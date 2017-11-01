@@ -8,12 +8,9 @@ export const FETCH_DATA_SUCCESS = 'ITEMS_FETCH_DATA_SUCCESS';
 
 // categories
 export const GET_CATEGORIES = 'GET_CATEGORIES';
-export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS';
 
-// all posts
+// post
 export const GET_ALL_POSTS = 'GET_ALL_POSTS';
-
-// single post
 export const GET_POST = 'GET_POST';
 export const ADD_POST = 'ADD_POST';
 export const EDIT_POST = 'EDIT_POST';
@@ -38,18 +35,6 @@ export function getPosts() {
             .fetchAllPosts()
             .then(posts => dispatch({
                 type: GET_ALL_POSTS,
-                posts
-            }))
-    };
-};
-
-// fetch posts by category
-export function getPostsByCategory(category) {
-    return (dispatch) => {
-        ReadableAPI
-            .fetchPostsByCategory(category)
-            .then(posts => dispatch({
-                type: GET_CATEGORY_POSTS,
                 posts
             }))
     };
@@ -150,7 +135,7 @@ export function addComment(body) {
             .addComment(body)
             .then(comment => {
                 console.log(comment)
-                
+
                 dispatch({
                     type: ADD_COMMENT,
                     comment

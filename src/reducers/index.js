@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import {
-    GET_ALL_POSTS,
     GET_CATEGORIES,
-    GET_CATEGORY_POSTS,
+    GET_ALL_POSTS,
     GET_POST,
     ADD_POST,
     EDIT_POST,
@@ -14,13 +13,17 @@ import {
 
 
 function posts(state = [], action) {
-    const { posts } = action;
+    const { posts, post } = action;
 
     switch (action.type) {
         case GET_ALL_POSTS:
             return posts;
-        case GET_CATEGORY_POSTS:
-            return posts;
+        case GET_POST:
+            return state.filter((item) => item.id === post.id);
+        case ADD_POST:
+            return [...state, post];
+        case EDIT_POST:
+            return  state
         default:
             return state;
     }
@@ -41,12 +44,12 @@ function post(state = [], action) {
     const { post } = action;
 
     switch (action.type) {
-        case GET_POST:
-            return post;
-        case ADD_POST:
-            return post;
-        case EDIT_POST:
-            return post;
+        // case GET_POST:
+        //     return post;
+        // // case ADD_POST:
+        // //     return post;
+        // case EDIT_POST:
+        //     return post;
         default:
             return state;
     }
