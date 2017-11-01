@@ -13,7 +13,6 @@ class AddPost extends Component {
         values["timestamp"] = Date.now();
 
         this.props.addPost(values);
-        console.log(values)
     }
 
     render() {

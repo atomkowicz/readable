@@ -62,7 +62,7 @@ function postComments(state = [], action) {
         case ADD_COMMENT:
             return [...state, comment];
         case DELETE_COMMENT:
-            return state.filter((item) => item.id === comment.id);
+            return state.filter((item) => item.id !== comment.id);
         case EDIT_COMMENT:
             const arr = state.filter((item) => item.id !== comment.id)
             return [...arr, comment]

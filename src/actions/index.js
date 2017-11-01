@@ -135,8 +135,6 @@ export function addComment(body) {
         ReadableAPI
             .addComment(body)
             .then(comment => {
-                console.log(comment)
-
                 dispatch({
                     type: ADD_COMMENT,
                     comment
