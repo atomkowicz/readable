@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Post from './Post';
 import { connect } from 'react-redux';
 import { getPosts } from '../actions';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class PostList extends Component {
     state = {
@@ -59,7 +59,9 @@ class PostList extends Component {
                     {
                         postList.length ?
                             postList.map((post, i) => (
-                                <Post key={i} post={post} />
+                                <Post key={i}
+                                    post={post}
+                                    redirectAfterDelete={false} />
                             ))
                             : (<div className="no-results">no results</div>)
                     }

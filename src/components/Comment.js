@@ -6,7 +6,8 @@ import {Link} from 'react-router-dom';
 
 class Comment extends Component {
 
-    deleteComment = (id) => {
+    deleteComment = (e, id) => {
+        e.preventDefault();        
         this.props.deleteComment(id);
     }
 
@@ -29,9 +30,9 @@ class Comment extends Component {
                             className="post-edit">
                             Edit
                         </Link>
-                        <a href=""
+                        <a href="#"
                             className="post-delete"
-                            onClick={() => this.deleteComment(comment.id)}>Delete</a>
+                            onClick={(e) => this.deleteComment(e,comment.id)}>Delete</a>
                     </div>
                 </div>
             </li>

@@ -14,10 +14,8 @@ class EditPost extends Component {
     }
 
     render() {
-        const { posts } = this.props;
+        const { post } = this.props;
         const { id } = this.props.match.params;
-
-        const post = posts.find(post => post.id === id);
 
         return (
             <div>
@@ -38,7 +36,7 @@ class EditPost extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.posts
+        post: state.post
     };
 };
 

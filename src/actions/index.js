@@ -77,7 +77,7 @@ export function addPost(body) {
     }
 };
 
-export function deletePost(id) {
+export function deletePost(id, redirect) {
     return (dispatch) => {
         ReadableAPI
             .deletePost(id)
@@ -85,8 +85,9 @@ export function deletePost(id) {
                 dispatch({
                     type: DELETE_POST,
                     post
-                })
-                dispatch(push('/'))
+                });
+                if (redirect)
+                 dispatch(push('/'));
             })
     }
 };

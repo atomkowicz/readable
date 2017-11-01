@@ -17,7 +17,7 @@ class PostDetails extends Component {
 
         return (
             <div>
-                <Post post={post} />
+                <Post post={post} redirectAfterDelete={true}/>
                 <p className="container-text">Comments:</p>
                 <CommentList postId={id} />
             </div>

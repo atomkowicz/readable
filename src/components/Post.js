@@ -5,8 +5,10 @@ import { deletePost } from '../actions';
 
 class Post extends Component {
 
-    deletePost = (id) => {
-        this.props.deletePost(id);
+    deletePost = (e, id) => {
+        e.preventDefault();
+        const redirect = this.props.redirectAfterDelete
+        this.props.deletePost(id, redirect);
     }
 
     render() {
@@ -44,9 +46,9 @@ class Post extends Component {
                             className="post-edit">
                             Edit
                         </Link>
-                        <a href=""
+                        <a href="#"
                             className="post-delete"
-                            onClick={() => this.deletePost(id)}>
+                            onClick={(e) => this.deletePost(e, id)}>
                             Delete
                         </a>
                     </div>
@@ -64,7 +66,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deletePost: (id) => dispatch(deletePost(id))
+        deletePost: (id, redirect) => dispatch(deletePost(id, redirect))
     }
 }
 

@@ -6,6 +6,7 @@ import {
     GET_POST,
     ADD_POST,
     EDIT_POST,
+    DELETE_POST,
     GET_POST_COMMENTS,
     ADD_COMMENT,
     EDIT_COMMENT,
@@ -23,6 +24,8 @@ function posts(state = [], action) {
         case EDIT_POST:
             const arr = state.filter((item) => item.id !== post.id)
             return [...arr, post]
+        case DELETE_POST:
+            return state.filter((item) => item.id !== post.id);
         default:
             return state;
     }
