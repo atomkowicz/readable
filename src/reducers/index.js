@@ -23,7 +23,7 @@ function posts(state = [], action) {
         default:
             return state;
     }
-}
+};
 
 function categories(state = [], action) {
     const { categories } = action;
@@ -34,7 +34,7 @@ function categories(state = [], action) {
         default:
             return state;
     }
-}
+};
 
 function post(state = [], action) {
     const { post } = action;
@@ -45,33 +45,24 @@ function post(state = [], action) {
         case ADD_POST:
             return post;
         case EDIT_POST:
-            return post;    
+            return post;
         default:
             return state;
     }
-}
+};
 
 function postComments(state = [], action) {
-    const { comments } = action;
+    const { comments, comment } = action;
 
     switch (action.type) {
         case GET_POST_COMMENTS:
             return comments;
-        default:
-            return state;
-    }
-}
-
-function comment(state = [], action) {
-    const { id, timestamp, body, author, parentId } = action;
-
-    switch (action.type) {
         case ADD_COMMENT:
-            return { ...state };
+            return [...state, comment];
         default:
             return state;
     }
-}
+};
 
 export default combineReducers({
     post,

@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
+import { addComment, deleteComment } from '../actions'
 
 class Comment extends Component {
 
+    deleteComment = (id) => {
+        this.props.deleteComment(id);
+    }
+
     render() {
         const { comment } = this.props;
+
         return (
             <li className="comment-list-item">
                 <div className="post-details">
@@ -18,7 +25,9 @@ class Comment extends Component {
                         <span>Score: {comment.voteScore}</span>
                         <button className="post-upvote">Upvote</button>
                         <a href="" className="post-edit">Edit</a>
-                        <a href="" className="post-delete">Delete</a>
+                        <a href=""
+                            className="post-delete"
+                            onClick={() => this.deleteComment(comment.id)}>Delete</a>
                     </div>
                 </div>
             </li>
@@ -26,8 +35,15 @@ class Comment extends Component {
     }
 }
 
-Comment.propTypes = {
-    comment: PropTypes.object.isRequired
+const mapStateToProps = (state) => {
+    return {
+    }
 }
 
-export default Comment;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteComment: (id) => dispatch(deleteComment(id)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comment);

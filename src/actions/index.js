@@ -27,9 +27,9 @@ export const GET_POST_COMMENTS = 'GET_POST_COMMENTS';
 // single comment
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const UPVOTE_COMENT = 'UPVOTE_COMENT';
 export const DOWNVOTE_COMMENT = 'DOWNVOTE_COMMENT';
-export const DELETE_COMMENT = 'DELETE_COMMENT';
 
 // fetch all posts from server
 export function getPosts() {
@@ -76,18 +76,7 @@ export function getPost(id) {
                 post
             }))
     };
-}
-
-export function getPostComments(id) {
-    return (dispatch) => {
-        ReadableAPI
-            .fetchPostComments(id)
-            .then(comments => dispatch({
-                type: GET_POST_COMMENTS,
-                comments
-            }))
-    }
-}
+};
 
 export function addPost(body) {
     return (dispatch) => {
@@ -101,13 +90,13 @@ export function addPost(body) {
                 dispatch(push('/'));
             })
     }
-}
+};
 
 export function deletePost(id) {
     return (dispatch) => {
         ReadableAPI
             .deletePost(id)
-            .than(post => {
+            .then(post => {
                 dispatch({
                     type: DELETE_POST,
                     post
@@ -115,7 +104,7 @@ export function deletePost(id) {
                 dispatch(push('/'))
             })
     }
-}
+};
 
 export function editPost(id, body) {
     return (dispatch) => {
@@ -129,4 +118,43 @@ export function editPost(id, body) {
                 dispatch(push(`/`))
             })
     }
-}
+};
+
+export function getPostComments(id) {
+    return (dispatch) => {
+        ReadableAPI
+            .fetchPostComments(id)
+            .then(comments => dispatch({
+                type: GET_POST_COMMENTS,
+                comments
+            }))
+    }
+};
+
+export function deleteComment(id) {
+    return (dispatch => {
+        ReadableAPI
+            .deleteComment(id)
+            .then(comment => {
+                dispatch({
+                    type: DELETE_COMMENT,
+                    comment
+                })
+            })
+    })
+};
+
+export function addComment(body) {
+    return (dispatch) => {
+        ReadableAPI
+            .addComment(body)
+            .then(comment => {
+                console.log(comment)
+                
+                dispatch({
+                    type: ADD_COMMENT,
+                    comment
+                })
+            })
+    }
+};
