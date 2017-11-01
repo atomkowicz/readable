@@ -143,3 +143,17 @@ export function addComment(body) {
             })
     }
 };
+
+export function editComment(id, body) {
+    return (dispatch) => {
+        ReadableAPI
+            .editComment(id, body)
+            .then(comment => {
+                dispatch({
+                    type: EDIT_COMMENT,
+                    comment
+                })
+                dispatch(push(`/posts/${id}`))
+            })
+    }
+};

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { addComment, deleteComment } from '../actions'
+import {Link} from 'react-router-dom';
 
 class Comment extends Component {
 
@@ -24,7 +25,10 @@ class Comment extends Component {
                         <button className="post-downvote">Downvote</button>
                         <span>Score: {comment.voteScore}</span>
                         <button className="post-upvote">Upvote</button>
-                        <a href="" className="post-edit">Edit</a>
+                        <Link to={`/comments/${comment.id}/edit`}
+                            className="post-edit">
+                            Edit
+                        </Link>
                         <a href=""
                             className="post-delete"
                             onClick={() => this.deleteComment(comment.id)}>Delete</a>

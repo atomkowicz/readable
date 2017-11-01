@@ -13,7 +13,7 @@ class PostDetails extends Component {
 
     render() {
         const { post } = this.props;
-        const { id } = this.props.match.params;
+        const { id } = this.props.match.params;      
 
         return (
             <div>
@@ -27,7 +27,6 @@ class PostDetails extends Component {
 
 const mapStateToProps = (state) => {
     const { post } = state;
-
     return {
         post: post
     };

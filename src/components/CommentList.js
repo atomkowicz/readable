@@ -35,10 +35,10 @@ class CommentList extends Component {
                     }
                 </ol>
                 <form
-                    className="create-post-form"
+                    className="container-text create-comment"
                     onSubmit={this.handleSubmit}>
-                    <div className="create-post-details">
-                        <textarea name="body" placeholder="Type your text here" defaultValue={"This is my short comment on this."} />
+                    <div>
+                        <textarea name="body" placeholder="Type your text here" defaultValue={"This is my new comment."} />
                         <input type="text" name="author" placeholder="Athor" defaultValue={"me"} />
 
                     </div>

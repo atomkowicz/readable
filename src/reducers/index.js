@@ -8,9 +8,9 @@ import {
     EDIT_POST,
     GET_POST_COMMENTS,
     ADD_COMMENT,
+    EDIT_COMMENT,
     DELETE_COMMENT
 } from '../actions';
-
 
 function posts(state = [], action) {
     const { posts, post } = action;
@@ -18,12 +18,11 @@ function posts(state = [], action) {
     switch (action.type) {
         case GET_ALL_POSTS:
             return posts;
-        case GET_POST:
-            return state.filter((item) => item.id === post.id);
         case ADD_POST:
             return [...state, post];
         case EDIT_POST:
-            return  state
+            const arr = state.filter((item) => item.id !== post.id)
+            return [...arr, post]
         default:
             return state;
     }
@@ -44,12 +43,8 @@ function post(state = [], action) {
     const { post } = action;
 
     switch (action.type) {
-        // case GET_POST:
-        //     return post;
-        // // case ADD_POST:
-        // //     return post;
-        // case EDIT_POST:
-        //     return post;
+        case GET_POST:
+            return post;
         default:
             return state;
     }
@@ -65,6 +60,9 @@ function postComments(state = [], action) {
             return [...state, comment];
         case DELETE_COMMENT:
             return state.filter((item) => item.id === comment.id);
+        case EDIT_COMMENT:
+            const arr = state.filter((item) => item.id !== comment.id)
+            return [...arr, comment]
         default:
             return state;
     }

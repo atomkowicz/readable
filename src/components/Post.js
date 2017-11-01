@@ -36,7 +36,10 @@ class Post extends Component {
                     </h3>
                     <p className="post-text">{body}</p>
                     <div className="post-info">
-                        <a href="" className="post-comments">Comments: 34</a>
+                        <Link to={`/posts/${id}`}
+                            className="post-comments">
+                            Comments: 34
+                        </Link>
                         <Link to={`/${category}/${id}/edit`}
                             className="post-edit">
                             Edit

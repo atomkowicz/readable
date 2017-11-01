@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Post from './Post';
 import { connect } from 'react-redux';
 import { getPosts } from '../actions';
+import {Link} from 'react-router-dom';
 
 class PostList extends Component {
     state = {
@@ -45,6 +46,7 @@ class PostList extends Component {
 
         return (
             <div className="list-posts">
+                <Link to={`/posts/add`} className="container-text">Add new post</Link>
                 <select
                     className="container-text"
                     name="category"

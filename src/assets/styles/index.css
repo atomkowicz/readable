@@ -59,7 +59,7 @@ body, .app {
   border-radius: 50%;
 }
 
-.create-post-details input {
+input {
   width: 100%;
   padding: 5px 10px;
   margin-bottom: 10px;
@@ -289,7 +289,7 @@ textarea {
 
 .category-menu {
   text-align: center;
-  padding: 10px;
+  padding: 30px;
   font-weight: bold;
 }
 
@@ -306,11 +306,16 @@ textarea {
 
 .container-text {
   margin: 20px;
-  display: block;
   text-align: right;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
+}
+
+.create-comment {
+  background: #eaeae3;
+  padding: 20px;
+  font-size: 14px;
 }
