@@ -38,11 +38,8 @@ class EditPost extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { id } = this.props.post;
-        console.log(id)
         const values = serializeForm(e.target, { hash: true })
         values.timestamp = Date.now();
-
-        console.log(values)
         this.props.editPost(id, values);
         this.props.handleCloseModal();
     }

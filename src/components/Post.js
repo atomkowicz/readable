@@ -65,7 +65,7 @@ class Post extends Component {
                             {
                                 showDetails
                                     ? title
-                                    : <Link to={{ pathname: `/posts/${id}`, state: { post: this.props.post, edit: false } }}
+                                    : <Link to={{ pathname: `/${category}/${id}`, state: { post: this.props.post, edit: false } }}
                                         className="link-button">
                                         {title}
                                     </Link>

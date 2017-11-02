@@ -9,14 +9,11 @@ class PostDetails extends Component {
     componentDidMount = () => {
         const { id } = this.props.match.params;
         this.props.getPost(id);
-
-       
     }
 
     render() {
         const { post } = this.props;
         const { id } = this.props.match.params;
-
 
         return (
             <div>
