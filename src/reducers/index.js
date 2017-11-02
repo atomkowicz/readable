@@ -8,6 +8,7 @@ import {
     EDIT_POST,
     DELETE_POST,
     GET_POST_COMMENTS,
+    GET_COMMENT,
     ADD_COMMENT,
     EDIT_COMMENT,
     DELETE_COMMENT
@@ -71,9 +72,21 @@ function postComments(state = [], action) {
     }
 };
 
+function comment(state = [], action) {
+    const { comment } = action;
+
+    switch (action.type) {
+        case GET_COMMENT:
+            return comment;
+        default:
+            return state;
+    }
+};
+
 export default combineReducers({
     post,
     posts,
+    comment,
     postComments,
     categories,
     routing: routerReducer

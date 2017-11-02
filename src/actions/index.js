@@ -25,6 +25,7 @@ export const GET_POST_COMMENTS = 'GET_POST_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const GET_COMMENT = 'GET_COMMENT';
 export const UPVOTE_COMENT = 'UPVOTE_COMENT';
 export const DOWNVOTE_COMMENT = 'DOWNVOTE_COMMENT';
 
@@ -77,7 +78,7 @@ export function addPost(body) {
     }
 };
 
-export function deletePost(id, redirect) {
+export function deletePost(id) {
     return (dispatch) => {
         ReadableAPI
             .deletePost(id)
@@ -86,8 +87,7 @@ export function deletePost(id, redirect) {
                     type: DELETE_POST,
                     post
                 });
-                if (redirect)
-                 dispatch(push('/'));
+                dispatch(push('/'));
             })
     }
 };
@@ -152,7 +152,18 @@ export function editComment(id, body) {
                     type: EDIT_COMMENT,
                     comment
                 })
-                dispatch(push(`/posts/${id}`))
+                dispatch(push(`/posts/${comment.parentId}`))
             })
     }
+};
+
+export function getComment(id) {
+    return (dispatch) => {
+        ReadableAPI
+            .fetchComment(id)
+            .then(comment => dispatch({
+                type: GET_COMMENT,
+                comment
+            }))
+    };
 };

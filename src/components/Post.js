@@ -7,13 +7,13 @@ class Post extends Component {
 
     deletePost = (e, id) => {
         e.preventDefault();
-        const redirect = this.props.redirectAfterDelete
-        this.props.deletePost(id, redirect);
+        this.props.deletePost(id);
     }
 
     render() {
 
         const { id, timestamp, title, body, author, category, voteScore } = this.props.post;
+        const { showDetails } = this.props;
 
         return (
             <li className="post-list-item">
@@ -31,26 +31,33 @@ class Post extends Component {
                         <span className="post-author">{timestamp}</span>
                     </div>
                     <h3>
-                        <Link to={`/posts/${id}`}
-                            className="link-button">
-                            {title}
-                        </Link>
+                        {
+                            showDetails
+                                ? title
+                                : <Link to={`/posts/${id}`}
+                                    className="link-button">
+                                    {title}
+                                </Link>
+                        }
+
                     </h3>
-                    <p className="post-text">{body}</p>
+                    <p className={!showDetails ? "post-text" : ""}>{body}</p>
                     <div className="post-info">
                         <Link to={`/posts/${id}`}
                             className="post-comments">
                             Comments: 34
                         </Link>
-                        <Link to={`/${category}/${id}/edit`}
-                            className="post-edit">
-                            Edit
-                        </Link>
-                        <a href="#"
-                            className="post-delete"
-                            onClick={(e) => this.deletePost(e, id)}>
-                            Delete
-                        </a>
+                        <div className="post-controls">
+                            <Link to={`/${category}/${id}/edit`}
+                                className="post-edit">
+                                Edit
+                                </Link>
+                            <a href="#"
+                                className="post-delete"
+                                onClick={(e) => this.deletePost(e, id)}>
+                                Delete
+                                </a>
+                        </div>
                     </div>
                 </div>
             </li>
@@ -66,7 +73,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deletePost: (id, redirect) => dispatch(deletePost(id, redirect))
+        deletePost: (id) => dispatch(deletePost(id))
     }
 }
 

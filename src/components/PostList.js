@@ -61,7 +61,7 @@ class PostList extends Component {
                             postList.map((post, i) => (
                                 <Post key={i}
                                     post={post}
-                                    redirectAfterDelete={false} />
+                                    showDetails={false} />
                             ))
                             : (<div className="no-results">no results</div>)
                     }

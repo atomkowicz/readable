@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import serializeForm from 'form-serialize';
 import { connect } from 'react-redux';
-import { editComment } from '../actions';
+import { editComment, getComment } from '../actions';
 
 class EditComment extends Component {
+
+    componentDidMount = () => {
+        const { id } = this.props.match.params;
+        this.props.getComment(id);
+        console.log(this.props.comment)
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -13,18 +19,18 @@ class EditComment extends Component {
     }
 
     render() {
-        
+        const { comment } = this.props;
 
         return (
             <div>
                 <form className="create-post-form"
                     onSubmit={this.handleSubmit}>
                     <div className="create-post-details">
-                        <textarea name="body" placeholder="Body" defaultValue="{comment.body}" />
+                        <textarea name="body" defaultValue={comment.body} />
                     </div>
                     <div className="create-post-details">
                         <button>Submit Comment</button>
-                    </div> 
+                    </div>
                 </form>
             </div >
         )
@@ -32,15 +38,18 @@ class EditComment extends Component {
 }
 
 const mapStateToProps = (state) => {
+
+    const {comment} = state;
     return {
-        posts: state.posts
+        comment: state.comment
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         editComment: (id, body) => dispatch(editComment(id, body)),
-    }
-}
+        getComment: (id) => dispatch(getComment(id))
+    };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditComment);

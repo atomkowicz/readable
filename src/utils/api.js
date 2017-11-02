@@ -92,3 +92,9 @@ export const editComment = (id, body) => (
         body: JSON.stringify(body)
     }).then(res => res.json())
 )
+
+export const fetchComment = (id) => (
+    fetch(`${api}/comments/${id}`, {
+        headers
+    }).then(res => res.json())
+);

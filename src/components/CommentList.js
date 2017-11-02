@@ -28,8 +28,8 @@ class CommentList extends Component {
                 <ol className="post-list">
                     {
                         comments.length ?
-                            comments.map(comment => (
-                                <Comment key={comment.id} comment={comment} />
+                            comments.map((comment, i) => (
+                                <Comment key={i} comment={comment} />
                             ))
                             : (<div className="no-results">There is no comments on this post, you can be the first to add comment.</div>)
                     }
