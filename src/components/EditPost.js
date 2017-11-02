@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import serializeForm from 'form-serialize';
 import { connect } from 'react-redux';
-import { editPost } from '../actions';
+import { editPost, getPost } from '../actions';
 
 class EditPost extends Component {
+
+    componentDidMount = () => {
+        const { id } = this.props.match.params;
+        this.props.getPost(id);
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -22,8 +27,8 @@ class EditPost extends Component {
                 <form className="create-post-form"
                     onSubmit={this.handleSubmit}>
                     <div className="create-post-details">
-                        <input type="text" name="title" placeholder="Title" defaultValue={post.title} />
-                        <textarea name="body" placeholder="Body" defaultValue={post.body} />
+                        <input type="text" name="title" placeholder="Post Title" value={post.title} />
+                        <textarea name="body" placeholder="Type your post here..." value={post.body} />
                     </div>
                     <div className="create-post-details">
                         <button>Submit Post</button>
@@ -43,6 +48,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         editPost: (id, body) => dispatch(editPost(id, body)),
+        getPost: (id) => dispatch(getPost(id))
     }
 }
 

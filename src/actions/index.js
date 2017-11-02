@@ -143,7 +143,7 @@ export function addComment(body) {
     }
 };
 
-export function editComment(id, body) {
+export function editComment(id, parentId, body) {
     return (dispatch) => {
         ReadableAPI
             .editComment(id, body)
@@ -152,7 +152,7 @@ export function editComment(id, body) {
                     type: EDIT_COMMENT,
                     comment
                 })
-                dispatch(push(`/posts/${comment.parentId}`))
+                dispatch(push(`/posts/${parentId}`))
             })
     }
 };

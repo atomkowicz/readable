@@ -8,14 +8,13 @@ class EditComment extends Component {
     componentDidMount = () => {
         const { id } = this.props.match.params;
         this.props.getComment(id);
-        console.log(this.props.comment)
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         const values = serializeForm(e.target, { hash: true })
         values.timestamp = Date.now();
-        this.props.editComment(this.props.id, values);
+        this.props.editComment(this.props.id, this.props.comment.parentId, values);
     }
 
     render() {
@@ -26,7 +25,7 @@ class EditComment extends Component {
                 <form className="create-post-form"
                     onSubmit={this.handleSubmit}>
                     <div className="create-post-details">
-                        <textarea name="body" defaultValue={comment.body} />
+                        <textarea name="body" placeholder="Type your comment here..." value={comment.body} />
                     </div>
                     <div className="create-post-details">
                         <button>Submit Comment</button>
@@ -39,7 +38,7 @@ class EditComment extends Component {
 
 const mapStateToProps = (state) => {
 
-    const {comment} = state;
+    const { comment } = state;
     return {
         comment: state.comment
     };
@@ -47,7 +46,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        editComment: (id, body) => dispatch(editComment(id, body)),
+        editComment: (id, parentId, body) => dispatch(editComment(id, parentId, body)),
         getComment: (id) => dispatch(getComment(id))
     };
 };
