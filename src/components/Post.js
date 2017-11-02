@@ -5,7 +5,6 @@ import { deletePost } from '../actions';
 import Modal from 'react-modal';
 import EditPost from './EditPost';
 
-
 class Post extends Component {
     constructor() {
         super();
@@ -14,20 +13,13 @@ class Post extends Component {
         };
     }
 
-
     deletePost = (e, id) => {
         e.preventDefault();
         this.props.deletePost(id);
     }
 
-    editPost = (e, id) => {
+    editPost = (e) => {
         e.preventDefault();
-        this.setState({
-            showModal: true
-        })
-    }
-
-    handleOpenModal() {
         this.setState({ showModal: true });
     }
 
@@ -79,7 +71,7 @@ class Post extends Component {
 
                                 <a href=""
                                     className="post-delete"
-                                    onClick={(e) => this.editPost(e, id)}>
+                                    onClick={() => this.editPost()}>
                                     Edit
                                 </a>
                                 <a href=""
@@ -111,7 +103,5 @@ const mapDispatchToProps = (dispatch) => {
         deletePost: (id) => dispatch(deletePost(id))
     }
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../assets/styles/App.css';
-import Header from './Header';
 import Menu from './Menu';
 import PostList from './PostList'
 import PostDetails from './PostDetails';
@@ -14,7 +13,9 @@ class App extends Component {
     return (
       <div className="App">
         <div>
-          <Header title={"all posts"} />
+          <header className="App-header">
+            <h1 className="App-title">Readable</h1>
+          </header>
           <Menu />
           <div className="container">
             <Switch>

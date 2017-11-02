@@ -48,7 +48,6 @@ class Comment extends Component {
                         <button className="post-downvote">Downvote</button>
                         <span>Score: {comment.voteScore}</span>
                         <button className="post-upvote">Upvote</button>
-                    
                         <a href=""
                             className="post-edit"
                             onClick={(e) => this.editComment(e)}>Edit</a>
