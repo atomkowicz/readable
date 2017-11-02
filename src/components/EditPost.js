@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import serializeForm from 'form-serialize';
 import { connect } from 'react-redux';
-import { editPost, getPost } from '../actions';
+import { editPost, getPost, closeModal } from '../actions';
 
 class EditPost extends Component {
     state = {
@@ -37,10 +37,14 @@ class EditPost extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { id } = this.props.post.id;
+        const { id } = this.props.post;
+        console.log(id)
         const values = serializeForm(e.target, { hash: true })
         values.timestamp = Date.now();
+
+        console.log(values)
         this.props.editPost(id, values);
+        this.props.handleCloseModal();
     }
 
 
@@ -82,7 +86,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        editPost: (id, body) => dispatch(editPost(id, body))
+        editPost: (id, body) => dispatch(editPost(id, body)),
+        //closeModal: (id) => dispatch(closeModal(id))
     }
 }
 

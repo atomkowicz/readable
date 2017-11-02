@@ -207,12 +207,9 @@ textarea {
   flex-direction: column;
   justify-content: space-between;
 }
-.post-details h3 {
-  margin: 0;
-}
+
 
 .post-text {
-  margin: 0;
   min-width: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -280,9 +277,9 @@ textarea {
   color: rgb(159, 160, 159);
 }
 
-.post-info h3 {
-  margin-top: 10px;
-  margin-bottom: 10px;
+.post-title {
+  margin-top: 15px;
+  margin-bottom: 0;
 }
 
 .post-info a {

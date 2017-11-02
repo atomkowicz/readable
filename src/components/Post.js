@@ -61,7 +61,7 @@ class Post extends Component {
                             <span className="post-author">Category: {category}</span>
                             <span className="post-author">{timestamp}</span>
                         </div>
-                        <h3>
+                        <h3 className="post-title">
                             {
                                 showDetails
                                     ? title
@@ -99,7 +99,7 @@ class Post extends Component {
                     isOpen={this.state.showModal}
                     contentLabel="Modal">
                     <h3>Edit Post</h3>
-                    <EditPost post={this.props.post} />
+                    <EditPost post={this.props.post} handleCloseModal={()=>this.handleCloseModal()} />
                 </Modal>
             </div>
         )

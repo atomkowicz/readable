@@ -29,6 +29,8 @@ export const GET_COMMENT = 'GET_COMMENT';
 export const UPVOTE_COMENT = 'UPVOTE_COMENT';
 export const DOWNVOTE_COMMENT = 'DOWNVOTE_COMMENT';
 
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+
 // fetch all posts from server
 export function getPosts() {
     return (dispatch) => {
@@ -101,7 +103,11 @@ export function editPost(id, body) {
                     type: EDIT_POST,
                     post
                 })
-                dispatch(push(`/`))
+                dispatch({
+                    type: GET_POST,
+                    post
+                })
+                dispatch(push(`/posts/${id}`))
             })
     }
 };
@@ -167,3 +173,10 @@ export function getComment(id) {
             }))
     };
 };
+
+export function closeModal(id) {
+    return {
+        type: CLOSE_MODAL,
+        id
+    }
+}
