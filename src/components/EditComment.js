@@ -12,9 +12,12 @@ class EditComment extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        const { id } = this.props.match.params;
+        
         const values = serializeForm(e.target, { hash: true })
         values.timestamp = Date.now();
-        this.props.editComment(this.props.id, this.props.comment.parentId, values);
+        this.props.editComment(id, this.props.comment.parentId, values);
+        console.log(values)
     }
 
     render() {
@@ -25,7 +28,7 @@ class EditComment extends Component {
                 <form className="create-post-form"
                     onSubmit={this.handleSubmit}>
                     <div className="create-post-details">
-                        <textarea name="body" placeholder="Type your comment here..." value={comment.body} />
+                        <textarea name="body" placeholder="Type your comment here..." value=""  />
                     </div>
                     <div className="create-post-details">
                         <button>Submit Comment</button>

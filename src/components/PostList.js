@@ -47,14 +47,14 @@ class PostList extends Component {
         return (
             <div className="list-posts">
                 <Link to={`/posts/add`} className="container-text">Add new post</Link>
-                <select
+                {postList.length > 1 && <select
                     className="container-text"
                     name="category"
                     defaultValue="react"
                     onChange={(e) => this.onSortMethodChange(e)}>
                     <option value="score">Sort by score</option>
                     <option value="date">Sort by date</option>
-                </select>
+                </select>}
                 <ol className="post-list">
                     {
                         postList.length ?
