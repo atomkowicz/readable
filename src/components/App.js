@@ -5,10 +5,7 @@ import Menu from './Menu';
 import PostList from './PostList'
 import PostDetails from './PostDetails';
 import AddPost from './AddPost';
-import EditPost from './EditPost';
-import EditComment from './EditComment';
 import { Route, Switch } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 
 class App extends Component {
 

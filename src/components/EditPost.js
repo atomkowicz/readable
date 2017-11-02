@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import serializeForm from 'form-serialize';
 import { connect } from 'react-redux';
-import { editPost, getPost, closeModal } from '../actions';
+import { editPost } from '../actions';
 
 class EditPost extends Component {
-    state = {
-        body: "ddd",
-        title: "ddd"
-    }
-
+ 
     componentDidMount = () => {
         //const { id } = this.props.match.params;
         //this.props.getPost(id);
@@ -17,8 +13,6 @@ class EditPost extends Component {
         //     body: this.props.post.body,
         //     title: this.props.post.title
         // })
-
-
     }
 
     handleChange = (e) => {
@@ -34,7 +28,6 @@ class EditPost extends Component {
         }
     }
 
-
     handleSubmit = (e) => {
         e.preventDefault();
         const { id } = this.props.post;
@@ -44,11 +37,8 @@ class EditPost extends Component {
         this.props.handleCloseModal();
     }
 
-
-
     render() {
         const { post } = this.props;
-        // const { id } = this.props.match.params;      
 
         return (
             <div>
@@ -58,12 +48,12 @@ class EditPost extends Component {
                         <input type="text"
                             name="title"
                             placeholder="Post Title"
-                            defaultValue={this.props.post.title}
+                            defaultValue={post.title}
                             onChange={(e) => this.handleChange(e)} />
                         <textarea
                             name="body"
                             placeholder="Type your post here..."
-                            defaultValue={this.props.post.body}
+                            defaultValue={post.body}
                             onChange={(e) => this.handleChange(e)} />
                     </div>
                     <div className="create-post-details">
@@ -77,14 +67,12 @@ class EditPost extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        //post: state.post
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         editPost: (id, body) => dispatch(editPost(id, body)),
-        //closeModal: (id) => dispatch(closeModal(id))
     }
 }
 

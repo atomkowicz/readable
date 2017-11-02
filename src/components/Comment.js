@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { addComment, deleteComment } from '../actions'
-import {Link} from 'react-router-dom';
+import { deleteComment } from '../actions'
 import Modal from 'react-modal';
 import EditComment from './EditComment';
 

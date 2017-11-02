@@ -6,6 +6,7 @@ import { uuid } from '../utils/helpers';
 import serializeForm from 'form-serialize';
 
 class CommentList extends Component {
+
     componentDidMount = () => {
         const { postId } = this.props;
         this.props.getPostComments(postId);
@@ -52,7 +53,7 @@ class CommentList extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { postComments, comment } = state;
+    const { postComments } = state;
     return {
         comments: postComments
     };

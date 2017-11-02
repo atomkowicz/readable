@@ -39,7 +39,7 @@ class Post extends Component {
 
         let { id, timestamp, title, body, author, category, voteScore } = this.props.post;
 
-        if (this.props.location) {
+        if (this.props.location && !this.props.post) {
             let { id, timestamp, title, body, author, category, voteScore } = this.props.location.state.post;
         }
 
@@ -74,11 +74,7 @@ class Post extends Component {
                         </h3>
                         <p className={!showDetails ? "post-text" : ""}>{body}</p>
                         <div className="post-info">
-                            {!showDetails && <Link to={`/posts/${id}`}
-                                className="post-comments">
-                                Comments: 34
-                        </Link>}
-                            {showDetails && <span>Comments: 34</span>}
+                            <span>Comments: 34</span>
                             <div className="post-controls">
 
                                 <a href=""
@@ -99,7 +95,7 @@ class Post extends Component {
                     isOpen={this.state.showModal}
                     contentLabel="Modal">
                     <h3>Edit Post</h3>
-                    <EditPost post={this.props.post} handleCloseModal={()=>this.handleCloseModal()} />
+                    <EditPost post={this.props.post} handleCloseModal={() => this.handleCloseModal()} />
                 </Modal>
             </div>
         )
