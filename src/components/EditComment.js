@@ -28,7 +28,7 @@ class EditComment extends Component {
                 <form className="create-post-form"
                     onSubmit={this.handleSubmit}>
                     <div className="create-post-details">
-                        <textarea name="body" placeholder="Type your comment here..." value=""  />
+                        <textarea name="body" placeholder="Type your comment here..."  />
                     </div>
                     <div className="create-post-details">
                         <button>Submit Comment</button>

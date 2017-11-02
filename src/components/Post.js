@@ -12,7 +12,12 @@ class Post extends Component {
 
     render() {
 
-        const { id, timestamp, title, body, author, category, voteScore } = this.props.post;
+        let { id, timestamp, title, body, author, category, voteScore } = this.props.post;
+
+        if (this.props.location) {
+            let { id, timestamp, title, body, author, category, voteScore } = this.props.location.state.post;
+        }
+
         const { showDetails } = this.props;
 
         return (
@@ -34,7 +39,7 @@ class Post extends Component {
                         {
                             showDetails
                                 ? title
-                                : <Link to={`/posts/${id}`}
+                                : <Link to={{ pathname: `/posts/${id}`, state: { post: this.props.post, edit: false } }}
                                     className="link-button">
                                     {title}
                                 </Link>
@@ -48,10 +53,10 @@ class Post extends Component {
                             Comments: 34
                         </Link>
                         <div className="post-controls">
-                            <Link to={`/${category}/${id}/edit`}
+                            <Link to={{ pathname: `/posts/${id}`, state: { post: this.props.post, edit: true } }}
                                 className="post-edit">
                                 Edit
-                                </Link>
+                            </Link>
                             <a href="#"
                                 className="post-delete"
                                 onClick={(e) => this.deletePost(e, id)}>
@@ -66,9 +71,7 @@ class Post extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-
-    }
+    return {}
 }
 
 const mapDispatchToProps = (dispatch) => {
