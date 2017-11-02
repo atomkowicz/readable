@@ -47,9 +47,7 @@ class EditPost extends Component {
 
     render() {
         const { post } = this.props;
-        // const { id } = this.props.match.params;
-        console.log(post)
-        
+        // const { id } = this.props.match.params;      
 
         return (
             <div>
