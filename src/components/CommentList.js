@@ -23,7 +23,7 @@ class CommentList extends Component {
 
     render() {
         const { comments } = this.props;
-        let sortedComments = comments.sort((x, y) => x.voteScore < y.voteScore)
+        let sortedComments = comments.sort((x, y) => x.voteScore <= y.voteScore)
 
         return (
             <div className="list-posts">

@@ -13,6 +13,8 @@ import {
     GET_COMMENT,
     ADD_COMMENT,
     EDIT_COMMENT,
+    UPVOTE_COMMENT,
+    DOWNVOTE_COMMENT,
     DELETE_COMMENT
 } from '../actions';
 
@@ -71,6 +73,8 @@ function postComments(state = [], action) {
         case DELETE_COMMENT:
             return state.filter((item) => item.id !== comment.id);
         case EDIT_COMMENT:
+        case UPVOTE_COMMENT:
+        case DOWNVOTE_COMMENT:
             const arr = state.filter((item) => item.id !== comment.id)
             return [...arr, comment]
         default:
@@ -83,6 +87,8 @@ function comment(state = [], action) {
 
     switch (action.type) {
         case GET_COMMENT:
+        case UPVOTE_COMMENT:
+        case DOWNVOTE_COMMENT:
             return comment;
         default:
             return state;

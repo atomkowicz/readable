@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteComment } from '../actions'
+import { deleteComment, voteComment } from '../actions'
 import Modal from 'react-modal';
 import EditComment from './EditComment';
 
@@ -29,6 +29,11 @@ class Comment extends Component {
         })
     }
 
+    voteComment = (e, id, vote) => {
+        e.preventDefault();
+        this.props.voteComment(id, vote);
+    }
+
     render() {
         const { comment } = this.props;
 
@@ -41,9 +46,9 @@ class Comment extends Component {
                     </div>
                     <p>{comment.body}</p>
                     <div className="post-info">
-                        <button className="post-downvote">Downvote</button>
+                        <button className="post-downvote" onClick={(e) => this.voteComment(e, comment.id, "downVote")}>Downvote</button>
                         <span>Score: {comment.voteScore}</span>
-                        <button className="post-upvote">Upvote</button>
+                        <button className="post-upvote" onClick={(e) => this.voteComment(e, comment.id, "upVote")}>Upvote</button>
                         <a href=""
                             className="post-edit"
                             onClick={(e) => this.editComment(e)}>Edit</a>
@@ -71,7 +76,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         deleteComment: (id) => dispatch(deleteComment(id)),
-
+        voteComment: (id, vote) => dispatch(voteComment(id, vote))
+        
     }
 }
 

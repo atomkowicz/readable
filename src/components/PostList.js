@@ -5,17 +5,6 @@ import { getPosts } from '../actions';
 import { Link } from 'react-router-dom';
 
 class PostList extends Component {
-    state = {
-        posts: ''
-    }
-
-    sortByTimestamp = (posts) => {
-        return posts.sort((x, y) => x.timestamp < y.timestamp);
-    }
-
-    sortByVoteScore = (posts) => {
-        return posts.sort((x, y) => x.voteScore < y.voteScore);
-    }
 
     componentDidMount = () => {
         this.props.getAllPosts();
@@ -25,13 +14,11 @@ class PostList extends Component {
         let posts = this.props.posts;
         switch (e.target.value) {
             case "date":
-                this.setState({ posts: posts.sort((x, y) => x.timestamp < y.timestamp) });
                 return;
             case "score":
-                this.setState({ posts: posts.sort((x, y) => x.voteScore < y.voteScore) });
                 return;
             default:
-                this.setState({ posts: posts });
+                return;
         }
     }
 
@@ -39,10 +26,9 @@ class PostList extends Component {
         const { posts } = this.props;
         const { category } = this.props.match.params;
 
-        let sortedPosts = this.state.posts ? this.state.posts : posts;
         let postList = category
-            ? sortedPosts.filter((post) => post.category === category)
-            : sortedPosts;
+            ? posts.filter((post) => post.category === category)
+            : posts;
 
         return (
             <div className="list-posts">

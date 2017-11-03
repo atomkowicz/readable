@@ -26,7 +26,7 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const GET_COMMENT = 'GET_COMMENT';
-export const UPVOTE_COMENT = 'UPVOTE_COMENT';
+export const UPVOTE_COMMENT = 'UPVOTE_COMENT';
 export const DOWNVOTE_COMMENT = 'DOWNVOTE_COMMENT';
 
 // fetch all posts from server
@@ -190,6 +190,32 @@ export function votePost(id, vote) {
                         dispatch({
                             type: DOWNVOTE_POST,
                             post
+                        });
+                        return;
+                    default: return;
+                }
+            })
+    }
+};
+
+export function voteComment(id, vote) {
+    let values = {};
+    values["option"] = vote;
+    return (dispatch) => {
+        ReadableAPI
+            .voteComment(id, values)
+            .then(comment => {
+                switch (vote) {
+                    case "upVote":
+                        dispatch({
+                            type: UPVOTE_COMMENT,
+                            comment
+                        });
+                        return;
+                    case "downVote":
+                        dispatch({
+                            type: DOWNVOTE_COMMENT,
+                            comment
                         });
                         return;
                     default: return;

@@ -109,3 +109,14 @@ export const votePost = (id, values) => (
         body: JSON.stringify(values)
     }).then(res => res.json())
 )
+
+export const voteComment = (id, values) => (
+    fetch(`${api}/comments/${id}`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+    }).then(res => res.json())
+)
