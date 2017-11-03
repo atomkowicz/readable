@@ -36,13 +36,14 @@ class Comment extends Component {
 
     render() {
         const { comment } = this.props;
+        const dateTime = (new Date(comment.timestamp)).toUTCString();
 
         return (
             <li className="comment-list-item">
                 <div className="post-details">
                     <div className="post-info">
                         <span className="post-author">Author: {comment.author}</span>
-                        <span className="post-author">{comment.timestamp}</span>
+                        <span className="post-author">{dateTime}</span>
                     </div>
                     <p>{comment.body}</p>
                     <div className="post-info">

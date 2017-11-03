@@ -42,6 +42,8 @@ class Post extends Component {
 
         const { showDetails } = this.props;
 
+        const dateTime = (new Date(timestamp)).toUTCString();
+
         return (
             <div>
                 <li className="post-list-item">
@@ -58,7 +60,7 @@ class Post extends Component {
                         <div className="post-info">
                             <span className="post-author">Author: {author}</span>
                             <span className="post-author">Category: {category}</span>
-                            <span className="post-author">{timestamp}</span>
+                            <span className="post-author">{dateTime}</span>
                         </div>
                         <h3 className="post-title">
                             {

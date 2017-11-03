@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
 import Post from './Post';
 import { connect } from 'react-redux';
-import { getPosts } from '../actions';
+import { getPosts, sortPostsByDate, sortPostsByScore } from '../actions';
 import { Link } from 'react-router-dom';
 
 class PostList extends Component {
+
+    state = {
+        sort: "byScore"
+    }
 
     componentDidMount = () => {
         this.props.getAllPosts();
     }
 
     onSortMethodChange = (e) => {
-        let posts = this.props.posts;
         switch (e.target.value) {
             case "date":
+                this.setState({ sort: "byDate" })
                 return;
             case "score":
+                this.setState({ sort: "byScore" })
                 return;
             default:
                 return;
@@ -26,9 +31,16 @@ class PostList extends Component {
         const { posts } = this.props;
         const { category } = this.props.match.params;
 
-        let postList = category
+        let postsByCategory = category
             ? posts.filter((post) => post.category === category)
             : posts;
+
+        let postList = [];
+
+        if (this.state.sort === "byDate")
+            postList = postsByCategory.sort((x, y) => x.timestamp <= y.timestamp);
+        if (this.state.sort === "byScore")
+            postList = postsByCategory.sort((x, y) => x.voteScore <= y.voteScore);
 
         return (
             <div className="list-posts">
@@ -66,7 +78,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAllPosts: () => dispatch(getPosts())
+        getAllPosts: () => dispatch(getPosts()),
+        sortPostsByDate: (posts) => dispatch(sortPostsByDate(posts)),
+        sortPostsByScore: (posts) => dispatch(sortPostsByScore(posts)),
     }
 }
 

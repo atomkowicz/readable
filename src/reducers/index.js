@@ -15,7 +15,9 @@ import {
     EDIT_COMMENT,
     UPVOTE_COMMENT,
     DOWNVOTE_COMMENT,
-    DELETE_COMMENT
+    DELETE_COMMENT,
+    SORT_POSTS_BY_SCORE,
+    SORT_POSTS_BY_DATE
 } from '../actions';
 
 function posts(state = [], action) {
@@ -23,7 +25,11 @@ function posts(state = [], action) {
 
     switch (action.type) {
         case GET_ALL_POSTS:
-            return posts;
+            return posts.sort((x, y) => x.voteScore <= y.voteScore);
+        case SORT_POSTS_BY_DATE:
+            return posts.sort((x, y) => x.timestamp <= y.timestamp);
+        case SORT_POSTS_BY_SCORE:
+            return posts.sort((x, y) => x.voteScore <= y.voteScore);
         case ADD_POST:
             return [...state, post];
         case EDIT_POST:

@@ -17,6 +17,8 @@ export const EDIT_POST = 'EDIT_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const UPVOTE_POST = 'UPVOTE_POST';
 export const DOWNVOTE_POST = 'DOWNVOTE_POST';
+export const SORT_POSTS_BY_SCORE = 'SORT_POSTS_BY_SCORE';
+export const SORT_POSTS_BY_DATE = 'SORT_POSTS_BY_DATE';
 
 // all comments
 export const GET_POST_COMMENTS = 'GET_POST_COMMENTS';
@@ -223,3 +225,16 @@ export function voteComment(id, vote) {
             })
     }
 };
+
+export function sortPostsByDate(posts) {
+    return {
+        type: SORT_POSTS_BY_DATE,
+        posts
+    }
+}
+export function sortPostsByScore(posts) {
+    return {
+        type: SORT_POSTS_BY_SCORE,
+        posts
+    }
+}

@@ -307,6 +307,7 @@ textarea {
 .container-text {
   margin: 20px;
   text-align: right;
+  display: inline-block;
 }
 
 .container {

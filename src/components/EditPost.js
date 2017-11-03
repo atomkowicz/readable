@@ -4,24 +4,14 @@ import { connect } from 'react-redux';
 import { editPost } from '../actions';
 
 class EditPost extends Component {
- 
-    componentDidMount = () => {
-        //const { id } = this.props.match.params;
-        //this.props.getPost(id);
-
-        // this.setState({
-        //     body: this.props.post.body,
-        //     title: this.props.post.title
-        // })
-    }
 
     handleChange = (e) => {
         switch (e.target.name) {
             case "title":
-               // this.setState({ title: e.target.value })
+                // this.setState({ title: e.target.value })
                 return;
             case "body":
-               // this.setState({ body: e.target.value })
+                // this.setState({ body: e.target.value })
                 return;
             default:
                 return;
@@ -39,7 +29,7 @@ class EditPost extends Component {
 
     handleCancel = (e) => {
         e.preventDefault();
-        this.props.handleCloseModal();        
+        this.props.handleCloseModal();
     }
 
     render() {

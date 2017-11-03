@@ -22,9 +22,17 @@ class AddPost extends Component {
             <div>
                 <form className="create-post-form" onSubmit={this.handleSubmit}>
                     <div className="create-post-details">
-                        <input type="text" name="title" placeholder="Title" defaultValue={"Some new post"} />
-                        <textarea name="body" placeholder="Type your text here" defaultValue={"User is able to navigate between categories, main page and post detail pages without typing address in the address bar."} />
-                        <input type="text" name="author" placeholder="Athor" defaultValue={"me"} />
+                        <input type="text"
+                            name="title"
+                            placeholder="Title"
+                            defaultValue={"Some new post"} />
+                        <textarea name="body"
+                            placeholder="Type your text here"
+                            defaultValue={"Sample content. User is able to navigate between categories, main page and post detail pages without typing address in the address bar."} />
+                        <input type="text"
+                            name="author"
+                            placeholder="Athor"
+                            defaultValue={"me"} />
                         <select name="category" defaultValue="react">
                             {
                                 categories.map((category) => (
