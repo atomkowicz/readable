@@ -105,7 +105,7 @@ export function editPost(id, body) {
                     type: GET_POST,
                     post
                 })
-                dispatch(push(`/posts/${id}`))
+                //dispatch(push(`/posts/${id}`))
             })
     }
 };
@@ -156,7 +156,7 @@ export function editComment(id, parentId, body) {
                     type: EDIT_COMMENT,
                     comment
                 })
-                dispatch(push(`/posts/${parentId}`))
+                //dispatch(push(`/posts/${parentId}`))
             })
     }
 };

@@ -70,8 +70,8 @@ class Post extends Component {
                             <div className="post-controls">
 
                                 <a href=""
-                                    className="post-delete"
-                                    onClick={() => this.editPost()}>
+                                    className="post-edit"
+                                    onClick={(e) => this.editPost(e)}>
                                     Edit
                                 </a>
                                 <a href=""

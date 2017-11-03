@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { getPost } from '../actions';
 import CommentList from './CommentList';
 import Post from './Post';
+import { Link } from 'react-router-dom';
 
 class PostDetails extends Component {
-   
+
     componentDidMount = () => {
         const { id } = this.props.match.params;
         this.props.getPost(id);
@@ -17,16 +18,22 @@ class PostDetails extends Component {
 
         return (
             <div>
-                <Post post={post} showDetails={true} />
-                <p className="container-text">Comments:</p>
-                <CommentList postId={id} />
+                {Object.keys(post).length !== 0 && <div>
+                    <Post post={post} showDetails={true} />
+                    <p className="container-text">Comments:</p>
+                    <CommentList postId={id} />
+                </div>}
+                {Object.keys(post).length === 0 && <div className="text-center">
+                    <h3 className="container-text text-center">Uuups! no such post</h3>
+                    <Link to={'/'}>Get me out of here</Link>
+                </div>}
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    const { post } = state;
+    const { post, posts } = state;
     return {
         post: post
     };
