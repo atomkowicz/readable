@@ -105,7 +105,7 @@ export function editPost(id, body) {
                     type: GET_POST,
                     post
                 })
-                //dispatch(push(`/posts/${id}`))
+                dispatch(push(`/posts/${id}`))
             })
     }
 };
@@ -147,7 +147,7 @@ export function addComment(body) {
     }
 };
 
-export function editComment(id, parentId, body) {
+export function editComment(id, body) {
     return (dispatch) => {
         ReadableAPI
             .editComment(id, body)
@@ -170,4 +170,30 @@ export function getComment(id) {
                 comment
             }))
     };
+};
+
+export function votePost(id, vote) {
+    let values = {};
+    values["option"] = vote;
+    return (dispatch) => {
+        ReadableAPI
+            .votePost(id, values)
+            .then(post => {
+                switch (vote) {
+                    case "upVote":
+                        dispatch({
+                            type: UPVOTE_POST,
+                            post
+                        });
+                        return;
+                    case "downVote":
+                        dispatch({
+                            type: DOWNVOTE_POST,
+                            post
+                        });
+                        return;
+                    default: return;
+                }
+            })
+    }
 };

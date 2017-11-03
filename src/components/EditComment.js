@@ -11,7 +11,7 @@ class EditComment extends Component {
 
         const values = serializeForm(e.target, { hash: true })
         values.timestamp = Date.now();
-        this.props.editComment(id, parentId, values);
+        this.props.editComment(id, values);
         this.props.handleCloseModal();
 
     }
@@ -67,7 +67,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        editComment: (id, parentId, body) => dispatch(editComment(id, parentId, body)),
+        editComment: (id, body) => dispatch(editComment(id, body)),
     };
 };
 

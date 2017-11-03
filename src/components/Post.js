@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deletePost } from '../actions';
+import { deletePost, votePost } from '../actions';
 import Modal from 'react-modal';
 import EditPost from './EditPost';
 
@@ -27,6 +27,11 @@ class Post extends Component {
         this.setState({ showModal: false });
     }
 
+    votePost = (e, id, vote) => {
+        e.preventDefault();
+        this.props.votePost(id, vote);
+    }
+
     render() {
 
         let { id, timestamp, title, body, author, category, voteScore } = this.props.post;
@@ -41,11 +46,13 @@ class Post extends Component {
             <div>
                 <li className="post-list-item">
                     <div className="post-voting-box" >
-                        <button className="post-upvote">Upvote</button>
+                        <button className="post-upvote"
+                            onClick={(e) => this.votePost(e, id, "upVote")}>Upvote</button>
                         <div className="post-score">
                             <p>Score: <span>{voteScore}</span></p>
                         </div>
-                        <button className="post-downvote">Downvote</button>
+                        <button className="post-downvote"
+                            onClick={(e) => this.votePost(e, id, "downVote")} >Downvote</button>
                     </div>
                     <div className="post-details">
                         <div className="post-info">
@@ -102,7 +109,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deletePost: (id) => dispatch(deletePost(id))
+        deletePost: (id) => dispatch(deletePost(id)),
+        votePost: (id, vote) => dispatch(votePost(id, vote))
     }
 }
 

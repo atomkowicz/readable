@@ -7,6 +7,8 @@ import {
     ADD_POST,
     EDIT_POST,
     DELETE_POST,
+    UPVOTE_POST,
+    DOWNVOTE_POST,
     GET_POST_COMMENTS,
     GET_COMMENT,
     ADD_COMMENT,
@@ -23,6 +25,8 @@ function posts(state = [], action) {
         case ADD_POST:
             return [...state, post];
         case EDIT_POST:
+        case UPVOTE_POST:
+        case DOWNVOTE_POST:
             const arr = state.filter((item) => item.id !== post.id)
             return [...arr, post]
         case DELETE_POST:
@@ -48,6 +52,8 @@ function post(state = [], action) {
 
     switch (action.type) {
         case GET_POST:
+        case UPVOTE_POST:
+        case DOWNVOTE_POST:
             return post;
         default:
             return state;
