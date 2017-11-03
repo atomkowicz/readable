@@ -18,10 +18,6 @@ class Comment extends Component {
         this.props.deleteComment(id);
     }
 
-    handleOpenModal() {
-        this.setState({ showModal: true });
-    }
-
     handleCloseModal() {
         this.setState({ showModal: false });
     }
