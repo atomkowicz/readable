@@ -35,8 +35,7 @@ function posts(state = [], action) {
         case EDIT_POST:
         case UPVOTE_POST:
         case DOWNVOTE_POST:
-            const arr = state.filter((item) => item.id !== post.id)
-            return [...arr, post]
+            return state.map(item => (item.id === post.id ? post : item))
         case DELETE_POST:
             return state.filter((item) => item.id !== post.id);
         default:
@@ -81,8 +80,7 @@ function postComments(state = [], action) {
         case EDIT_COMMENT:
         case UPVOTE_COMMENT:
         case DOWNVOTE_COMMENT:
-            const arr = state.filter((item) => item.id !== comment.id)
-            return [...arr, comment]
+            return state.map(item => (item.id === comment.id ? comment : item))
         default:
             return state;
     }
