@@ -40,7 +40,7 @@ class CommentList extends Component {
                     className="container-text create-comment"
                     onSubmit={this.handleSubmit}>
                     <div>
-                        <textarea name="body" placeholder="Type your text here" defaultValue={"This is my new comment."} />
+                        <textarea name="body" placeholder="Type your text here" defaultValue={"Sample new comment just to save some typing."} />
                         <input type="text" name="author" placeholder="Athor" defaultValue={"me"} />
 
                     </div>

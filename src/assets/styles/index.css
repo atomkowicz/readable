@@ -319,6 +319,7 @@ textarea {
   background: #eaeae3;
   padding: 20px;
   font-size: 14px;
+  display: block;
 }
 
 .text-center {
