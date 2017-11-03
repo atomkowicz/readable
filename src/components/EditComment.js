@@ -29,6 +29,11 @@ class EditComment extends Component {
         }
     }
 
+    handleCancel = (e) => {
+        e.preventDefault();
+        this.props.handleCloseModal();        
+    }
+
     render() {
         const { comment } = this.props;
 
@@ -45,6 +50,7 @@ class EditComment extends Component {
                         />
                     </div>
                     <div className="create-post-details">
+                        <a className="edit-cancel" onClick={(e) => this.handleCancel(e)}>Cancel</a>
                         <button>Submit Comment</button>
                     </div>
                 </form>

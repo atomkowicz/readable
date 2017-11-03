@@ -87,7 +87,9 @@ class Post extends Component {
                     isOpen={this.state.showModal}
                     contentLabel="Modal">
                     <h3>Edit Post</h3>
-                    <EditPost post={this.props.post} handleCloseModal={() => this.handleCloseModal()} />
+                    <EditPost
+                        post={this.props.post}
+                        handleCloseModal={(e) => this.handleCloseModal(e)} />
                 </Modal>
             </div>
         )

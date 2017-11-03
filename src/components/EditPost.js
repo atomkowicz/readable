@@ -37,6 +37,11 @@ class EditPost extends Component {
         this.props.handleCloseModal();
     }
 
+    handleCancel = (e) => {
+        e.preventDefault();
+        this.props.handleCloseModal();        
+    }
+
     render() {
         const { post } = this.props;
 
@@ -57,6 +62,7 @@ class EditPost extends Component {
                             onChange={(e) => this.handleChange(e)} />
                     </div>
                     <div className="create-post-details">
+                        <a className="edit-cancel" onClick={(e) => this.handleCancel(e)}>Cancel</a>
                         <button>Submit Post</button>
                     </div>
                 </form>
