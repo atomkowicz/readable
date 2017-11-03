@@ -23,13 +23,14 @@ class CommentList extends Component {
 
     render() {
         const { comments } = this.props;
+        let sortedComments = comments.sort((x, y) => x.voteScore < y.voteScore)
 
         return (
             <div className="list-posts">
                 <ol className="post-list">
                     {
-                        comments.length ?
-                            comments.map((comment, i) => (
+                        sortedComments.length ?
+                            sortedComments.map((comment, i) => (
                                 <Comment key={i} comment={comment} />
                             ))
                             : (<div className="no-results">There is no comments on this post, you can be the first to add comment.</div>)
