@@ -5,14 +5,56 @@ import { addPost } from '../actions';
 import { uuid } from '../utils/helpers';
 
 class AddPost extends Component {
+    state = {
+        title: "",
+        body: "",
+        author: "",
+        isTitleValid: false,
+        isBodyValid: false,
+        isAuthorValid: false,
+        showErrorMsg: false
+    }
+
+    isFormValid = () => {
+        return this.state.isTitleValid && this.state.isBodyValid && this.state.isAuthorValid;
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const values = serializeForm(e.target, { hash: true })
-        values["id"] = uuid();
-        values["timestamp"] = Date.now();
+        this.setState({
+            showErrorMsg: true
+        })
+        if (this.isFormValid()) {
+            const values = serializeForm(e.target, { hash: true })
+            values["id"] = uuid();
+            values["timestamp"] = Date.now();
+            this.props.addPost(values);
+        }
+    }
 
-        this.props.addPost(values);
+    handleChange = (e) => {
+        switch (e.target.name) {
+            case "title":
+                this.setState({
+                    title: e.target.value,
+                    isTitleValid: !!e.target.value
+                })
+                return;
+            case "body":
+                this.setState({
+                    body: e.target.value,
+                    isBodyValid: !!e.target.value
+                })
+                return;
+            case "author":
+                this.setState({
+                    author: e.target.value,
+                    isAuthorValid: !!e.target.value
+                })
+                return;
+            default:
+                return;
+        }
     }
 
     render() {
@@ -20,16 +62,20 @@ class AddPost extends Component {
 
         return (
             <div>
+                {!this.isFormValid() && this.state.showErrorMsg && <div className="error-msg text-center">Fill all form fiels</div>}
                 <form className="create-post-form" onSubmit={this.handleSubmit}>
                     <div className="create-post-details">
                         <input type="text"
                             name="title"
                             placeholder="Title"
-                            defaultValue={"Some new post"} />
+                            defaultValue={"Some new post"}
+                            onChange={(e) => this.handleChange(e)} />
                         <textarea name="body"
+                            onChange={(e) => this.handleChange(e)}
                             placeholder="Type your text here"
                             defaultValue={"Sample content. User is able to navigate between categories, main page and post detail pages without typing address in the address bar."} />
                         <input type="text"
+                            onChange={(e) => this.handleChange(e)}
                             name="author"
                             placeholder="Athor"
                             defaultValue={"me"} />

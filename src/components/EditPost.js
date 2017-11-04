@@ -70,8 +70,6 @@ class EditPost extends Component {
                 {!this.isFormValid() && <div className="error-msg text-center">Fill all form fiels</div>}
                 <form className="create-post-form"
                     onSubmit={this.handleSubmit}>
-
-
                     <div className="create-post-details">
                         <input type="text"
                             name="title"
