@@ -7,18 +7,50 @@ import serializeForm from 'form-serialize';
 
 class CommentList extends Component {
 
+    state = {
+        body: "",
+        author: "",
+        isBodyValid: false,
+        isAuthorValid: false
+    }
+
     componentDidMount = () => {
         const { postId } = this.props;
         this.props.getPostComments(postId);
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
-        const values = serializeForm(e.target, { hash: true })
-        values["id"] = uuid();
-        values["timestamp"] = Date.now();
-        values["parentId"] = this.props.postId;
-        this.props.addComment(values);
+        if (this.isFormValid()) {
+            e.preventDefault();
+            const values = serializeForm(e.target, { hash: true })
+            values["id"] = uuid();
+            values["timestamp"] = Date.now();
+            values["parentId"] = this.props.postId;
+            this.props.addComment(values);
+        }
+    }
+
+    handleChange = (e) => {
+        switch (e.target.name) {
+            case "body":
+                this.setState({
+                    body: e.target.value,
+                    isBodyValid: !!e.target.value
+                })
+                return;
+            case "author":
+                this.setState({
+                    author: e.target.value,
+                    isAuthorValid: !!e.target.value
+                })
+                return;
+            default:
+                return;
+        }
+    }
+
+    isFormValid = () => {
+        return this.state.isBodyValid && this.state.isAuthorValid;
     }
 
     render() {
@@ -40,12 +72,17 @@ class CommentList extends Component {
                     className="container-text create-comment"
                     onSubmit={this.handleSubmit}>
                     <div>
-                        <textarea name="body" placeholder="Type your text here" defaultValue={"Sample new comment just to save some typing."} />
-                        <input type="text" name="author" placeholder="Athor" defaultValue={"me"} />
+                        <textarea name="body"
+                            onChange={(e) => this.handleChange(e)}
+                            placeholder="Type your text here" />
+                        <input name="author"
+                            onChange={(e) => this.handleChange(e)}
+                            type="text"
+                            placeholder="Athor" />
 
                     </div>
                     <div className="create-post-details">
-                        <button>Add Comment</button>
+                        <button disabled={!this.isFormValid()}>Add Comment</button>
                     </div>
                 </form>
             </div>
