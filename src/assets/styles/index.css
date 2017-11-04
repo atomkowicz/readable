@@ -331,3 +331,8 @@ textarea {
   cursor: pointer;
   margin: 0 30px;
 }
+
+.error-msg {
+  font-weight: bold;
+  color: red;
+}

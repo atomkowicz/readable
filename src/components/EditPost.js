@@ -5,26 +5,45 @@ import { editPost } from '../actions';
 
 class EditPost extends Component {
 
+    state = {
+        title: "",
+        body: "",
+        isTitleValid: false,
+        isBodyValid: false
+    }
+
     handleChange = (e) => {
         switch (e.target.name) {
             case "title":
-                // this.setState({ title: e.target.value })
+                this.setState({
+                    title: e.target.value,
+                    isTitleValid: !!e.target.value
+                })
                 return;
             case "body":
-                // this.setState({ body: e.target.value })
+                this.setState({
+                    body: e.target.value,
+                    isBodyValid: !!e.target.value
+                })
                 return;
             default:
                 return;
         }
     }
 
+    isFormValid = () => {
+        return this.state.isTitleValid && this.state.isBodyValid;
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
-        const { id } = this.props.post;
-        const values = serializeForm(e.target, { hash: true })
-        values.timestamp = Date.now();
-        this.props.editPost(id, values);
-        this.props.handleCloseModal();
+        if (this.isFormValid()) {
+            const { id } = this.props.post;
+            const values = serializeForm(e.target, { hash: true })
+            values.timestamp = Date.now();
+            this.props.editPost(id, values);
+            this.props.handleCloseModal();
+        }
     }
 
     handleCancel = (e) => {
@@ -32,13 +51,27 @@ class EditPost extends Component {
         this.props.handleCloseModal();
     }
 
+    componentDidMount = () => {
+        const { title, body } = this.props.post;
+        const { isBodyValid, isTitleValid } = this.state;
+        this.setState({
+            title: title,
+            body: body,
+            isTitleValid: !!title,
+            isBodyValid: !!body
+        })
+    }
+
     render() {
         const { post } = this.props;
 
         return (
             <div>
+                {!this.isFormValid() && <div className="error-msg text-center">Fill all form fiels</div>}
                 <form className="create-post-form"
                     onSubmit={this.handleSubmit}>
+
+
                     <div className="create-post-details">
                         <input type="text"
                             name="title"
@@ -53,7 +86,7 @@ class EditPost extends Component {
                     </div>
                     <div className="create-post-details">
                         <a className="edit-cancel" onClick={(e) => this.handleCancel(e)}>Cancel</a>
-                        <button>Submit Post</button>
+                        <button disabled={!this.isFormValid()}>Submit Post</button>
                     </div>
                 </form>
             </div >
