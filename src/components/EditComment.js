@@ -5,24 +5,35 @@ import { editComment } from '../actions';
 
 class EditComment extends Component {
 
+    state = {
+        body: "",
+        isBodyValid: false
+    }
+
+
     handleSubmit = (e) => {
         e.preventDefault();
-        const { id, parentId } = this.props.comment;
 
-        const values = serializeForm(e.target, { hash: true })
-        values.timestamp = Date.now();
-        this.props.editComment(id, values);
-        this.props.handleCloseModal();
+        if (this.isFormValid()) {
+            const { id, parentId } = this.props.comment;
+            const values = serializeForm(e.target, { hash: true })
+            values.timestamp = Date.now();
+            this.props.editComment(id, values);
+            this.props.handleCloseModal();
+        }
+    }
 
+    isFormValid = () => {
+        return this.state.isBodyValid;
     }
 
     handleChange = (e) => {
         switch (e.target.name) {
-            case "title":
-               // this.setState({ title: e.target.value })
-                return;
             case "body":
-               // this.setState({ body: e.target.value })
+                this.setState({
+                    body: e.target.value,
+                    isBodyValid: !!e.target.value
+                })
                 return;
             default:
                 return;
@@ -31,7 +42,16 @@ class EditComment extends Component {
 
     handleCancel = (e) => {
         e.preventDefault();
-        this.props.handleCloseModal();        
+        this.props.handleCloseModal();
+    }
+
+    componentDidMount = () => {
+        const { body } = this.props.comment;
+        const { isBodyValid } = this.state;
+        this.setState({
+            body: body,
+            isBodyValid: !!body
+        })
     }
 
     render() {
@@ -39,6 +59,7 @@ class EditComment extends Component {
 
         return (
             <div>
+                {!this.isFormValid() && <div className="error-msg text-center">Fill all form fiels</div>}
                 <form className="create-post-form"
                     onSubmit={this.handleSubmit}>
                     <div className="create-post-details">
@@ -51,7 +72,7 @@ class EditComment extends Component {
                     </div>
                     <div className="create-post-details">
                         <a className="edit-cancel" onClick={(e) => this.handleCancel(e)}>Cancel</a>
-                        <button>Submit Comment</button>
+                        <button disabled={!this.isFormValid()}>Submit Comment</button>
                     </div>
                 </form>
             </div >
