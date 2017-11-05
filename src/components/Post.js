@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deletePost, votePost } from '../actions';
+import { deletePost, votePost, getCommentsNo } from '../actions';
 import Modal from 'react-modal';
 import EditPost from './EditPost';
 
@@ -32,15 +32,21 @@ class Post extends Component {
         this.props.votePost(id, vote);
     }
 
+    componentDidMount = () => {
+        if (!this.props.showDetails) {
+            const { id } = this.props.post;
+            this.props.getCommentsNo(id);
+        }
+    }
+
     render() {
 
+        const { showDetails } = this.props;
         let { id, timestamp, title, body, author, category, voteScore } = this.props.post;
 
         if (this.props.location && !this.props.post) {
             let { id, timestamp, title, body, author, category, voteScore } = this.props.location.state.post;
         }
-
-        const { showDetails } = this.props;
 
         const dateTime = (new Date(timestamp)).toUTCString();
 
@@ -75,7 +81,7 @@ class Post extends Component {
                         </h3>
                         <p className={!showDetails ? "post-text" : ""}>{body}</p>
                         <div className="post-info">
-                            <span>Comments: 34</span>
+                            {!showDetails && <span>Comments: {this.props.commentsNo[id]}</span>}
                             <div className="post-controls">
 
                                 <a href=""
@@ -106,13 +112,16 @@ class Post extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        commentsNo: state.commentsNo
+    };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         deletePost: (id) => dispatch(deletePost(id)),
-        votePost: (id, vote) => dispatch(votePost(id, vote))
+        votePost: (id, vote) => dispatch(votePost(id, vote)),
+        getCommentsNo: (id) => dispatch(getCommentsNo(id)),
     }
 }
 

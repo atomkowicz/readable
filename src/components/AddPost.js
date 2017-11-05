@@ -68,17 +68,14 @@ class AddPost extends Component {
                         <input type="text"
                             name="title"
                             placeholder="Title"
-                            defaultValue={"Some new post"}
                             onChange={(e) => this.handleChange(e)} />
                         <textarea name="body"
                             onChange={(e) => this.handleChange(e)}
-                            placeholder="Type your text here"
-                            defaultValue={"Sample content. User is able to navigate between categories, main page and post detail pages without typing address in the address bar."} />
+                            placeholder="Type your text here"/>
                         <input type="text"
                             onChange={(e) => this.handleChange(e)}
                             name="author"
-                            placeholder="Athor"
-                            defaultValue={"me"} />
+                            placeholder="Author" />
                         <select name="category" defaultValue="react">
                             {
                                 categories.map((category) => (

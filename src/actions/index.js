@@ -30,6 +30,7 @@ export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const GET_COMMENT = 'GET_COMMENT';
 export const UPVOTE_COMMENT = 'UPVOTE_COMENT';
 export const DOWNVOTE_COMMENT = 'DOWNVOTE_COMMENT';
+export const GET_POST_COMMENTS_NO = 'GET_POST_COMMENTS_NO';
 
 // fetch all posts from server
 export function getPosts() {
@@ -119,6 +120,18 @@ export function getPostComments(id) {
             .then(comments => dispatch({
                 type: GET_POST_COMMENTS,
                 comments
+            }))
+    }
+};
+
+export function getCommentsNo(id) {
+    return (dispatch) => {
+        ReadableAPI
+            .fetchPostCommentsNo(id)
+            .then(commentsNo => dispatch({
+                type: GET_POST_COMMENTS_NO,
+                commentsNo,
+                id
             }))
     }
 };

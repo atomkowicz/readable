@@ -16,20 +16,15 @@ import {
     UPVOTE_COMMENT,
     DOWNVOTE_COMMENT,
     DELETE_COMMENT,
-    SORT_POSTS_BY_SCORE,
-    SORT_POSTS_BY_DATE
+    GET_POST_COMMENTS_NO
 } from '../actions';
 
 function posts(state = [], action) {
-    const { posts, post } = action;
+    const { posts, post, commentsNo, id } = action;
 
     switch (action.type) {
         case GET_ALL_POSTS:
-            return posts.sort((x, y) => x.voteScore <= y.voteScore);
-        case SORT_POSTS_BY_DATE:
-            return posts.sort((x, y) => x.timestamp <= y.timestamp);
-        case SORT_POSTS_BY_SCORE:
-            return posts.sort((x, y) => x.voteScore <= y.voteScore);
+            return posts;
         case ADD_POST:
             return [...state, post];
         case EDIT_POST:
@@ -55,7 +50,7 @@ function categories(state = [], action) {
 };
 
 function post(state = [], action) {
-    const { post } = action;
+    const { post, commentsNo } = action;
 
     switch (action.type) {
         case GET_POST:
@@ -99,11 +94,25 @@ function comment(state = [], action) {
     }
 };
 
+function commentsNo(state = {}, action) {
+    const { commentsNo, id } = action;
+
+    switch (action.type) {
+        case GET_POST_COMMENTS_NO:
+            return {
+                ...state, [id]: commentsNo
+            }
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
     post,
     posts,
     comment,
     postComments,
+    commentsNo,
     categories,
     routing: routerReducer
 });

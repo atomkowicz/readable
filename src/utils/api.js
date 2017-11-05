@@ -35,6 +35,12 @@ export const fetchPostComments = (id) => (
         .then(res => res.json())
 )
 
+export const fetchPostCommentsNo = (id) => (
+    fetch(`${api}/posts/${id}/comments`, { headers })
+        .then(res => res.json())
+        .then(res => res.length)
+)
+
 export const addPost = (body) => (
     fetch(`${api}/posts`, {
         method: 'POST',

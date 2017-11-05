@@ -20,12 +20,11 @@ class PostDetails extends Component {
             <div>
                 {Object.keys(post).length !== 0 && <div>
                     <Post post={post} showDetails={true} />
-                    <p className="container-text">Comments:</p>
                     <CommentList postId={id} />
                 </div>}
                 {Object.keys(post).length === 0 && <div className="text-center">
-                    <h3 className="container-text text-center">Uuups! no such post</h3>
-                    <Link to={'/'}>Get me out of here</Link>
+                    <h3 className="container-text text-center">No such post</h3>
+                    <Link to={'/'}>return home</Link>
                 </div>}
             </div>
         )

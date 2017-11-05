@@ -10,7 +10,6 @@ class EditComment extends Component {
         isBodyValid: false
     }
 
-
     handleSubmit = (e) => {
         e.preventDefault();
 

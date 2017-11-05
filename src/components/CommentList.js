@@ -59,6 +59,8 @@ class CommentList extends Component {
 
         return (
             <div className="list-posts">
+                <p className="container-text">Comment(s):{comments.length}</p>
+
                 <ol className="post-list">
                     {
                         sortedComments.length ?
