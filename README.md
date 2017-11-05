@@ -1,6 +1,6 @@
 ## Readable project
 
-This is final assessment project for Udacity's Redux course. This is react - redux 'content and comment' web app that alow users to add, edit, vote or delete post and comments.
+This is content and comment react-redux web app. Users can to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users can edit and delete posts and comments.
 
 ## Instalation
 
